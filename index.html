@@ -97,7 +97,7 @@ p{
 }
 
 /* =========================
-   音樂按鈕
+   音樂
 ========================= */
 
 .music-btn{
@@ -255,8 +255,8 @@ p{
 }
 
 .photo-placeholder{
-    width:100%;
-    height:100%;
+    position:absolute;
+    inset:0;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -306,22 +306,6 @@ p{
     font-size:35px;
     color:white;
     cursor:pointer;
-}
-
-/* =========================
-   住宿
-========================= */
-
-.stay{
-    background:#172224;
-}
-
-/* =========================
-   晚餐
-========================= */
-
-.dinner{
-    background:#211e1b;
 }
 
 /* =========================
@@ -413,7 +397,7 @@ p{
 }
 
 /* =========================
-   彩蛋
+   生日彩蛋
 ========================= */
 
 .secret{
@@ -426,14 +410,14 @@ p{
 }
 
 .secret.open{
-    max-height:700px;
+    max-height:1000px;
     opacity:1;
 }
 
 .secret-message{
     margin:35px auto;
     padding:35px;
-    max-width:650px;
+    max-width:680px;
     border-top:1px solid rgba(255,255,255,.2);
     border-bottom:1px solid rgba(255,255,255,.2);
 }
@@ -514,7 +498,7 @@ p{
 
 
 <!-- =========================
-     音樂
+     背景音樂
 ========================= -->
 
 <audio id="bgMusic" loop>
@@ -571,14 +555,19 @@ A BIRTHDAY TRIP FOR YOU
 </h1>
 
 <p class="reveal">
-因為這次，我想跟你一起出發。
+因為只要是和你一起，<br>
+去哪裡都很好。
+</p>
+
+<p class="reveal">
+威翰，這是我想送你的生日禮物。
 </p>
 
 <a
     href="#story"
     class="btn reveal">
 
-☂ 打開這份生日禮物
+☂ 打開，我準備的小驚喜
 
 </a>
 
@@ -589,7 +578,7 @@ A BIRTHDAY TRIP FOR YOU
 
 
 <!-- =========================
-     故事
+     第二幕
 ========================= -->
 
 <section id="story" class="story">
@@ -597,26 +586,34 @@ A BIRTHDAY TRIP FOR YOU
 <div class="container">
 
 <div class="small reveal">
-FOR MY FAVORITE PERSON
+OUR FIRST THREE MONTHS
 </div>
 
 <h2 class="reveal">
-我想送你的，<br>
-不是一個東西。
+三個月，<br>
+好像不算很久。
 </h2>
 
 <p class="reveal">
-而是兩天一夜。
+但這三個月裡，<br>
+我很開心我的生活裡，多了一個你。
 </p>
 
 <p class="reveal">
-不用趕著工作，<br>
-不用想太多事情。
+多了一個可以分享日常的人，<br>
+多了一個讓我期待見面的人，<br>
+也多了一個我想好好珍惜的人。
 </p>
 
 <p class="reveal">
-就跟我一起，離開日常一下。
+我不知道未來會有多少個三個月，<br>
+但我很確定的是——
 </p>
+
+<h2 class="reveal">
+現在的我，<br>
+很喜歡和你一起走。
+</h2>
 
 
 <div class="photo reveal">
@@ -628,11 +625,20 @@ FOR MY FAVORITE PERSON
     onclick="openPhoto(this)">
 
 <div class="photo-placeholder">
-    <span>♡</span>
-    <small>照片之後放進來</small>
+
+<span>♡</span>
+
+<small>
+照片之後放進來
+</small>
+
 </div>
 
 </div>
+
+<p class="reveal">
+謝謝你，讓我的日常多了一點不一樣。
+</p>
 
 </div>
 
@@ -641,7 +647,7 @@ FOR MY FAVORITE PERSON
 
 
 <!-- =========================
-     宜蘭揭曉
+     第三幕｜宜蘭揭曉
 ========================= -->
 
 <section class="destination">
@@ -653,11 +659,13 @@ DESTINATION REVEAL
 </div>
 
 <h2 class="reveal">
-那麼，去哪裡？
+那麼，這次我們去哪裡？
 </h2>
 
 <p class="reveal">
-一滴雨，是一個提示。
+不是很遠的地方。<br>
+只是想找一個地方，<br>
+讓我們暫時離開每天忙忙碌碌的生活。
 </p>
 
 
@@ -666,6 +674,10 @@ DESTINATION REVEAL
 <h1>
 宜蘭
 </h1>
+
+<p>
+9.05 — 9.06
+</p>
 
 <p>
 2 DAYS · 1 NIGHT
@@ -686,7 +698,7 @@ DESTINATION REVEAL
 
 <div>
 <b>MOOD</b>
-慢慢來
+慢慢來，就很好。
 </div>
 
 </div>
@@ -700,7 +712,7 @@ DESTINATION REVEAL
 
 
 <!-- =========================
-     住宿
+     第四幕｜我們的晚上
 ========================= -->
 
 <section class="stay">
@@ -708,16 +720,21 @@ DESTINATION REVEAL
 <div class="container">
 
 <div class="small reveal">
-TONIGHT'S HOME
+A LITTLE ESCAPE
 </div>
 
 <h2 class="reveal">
-今晚，這裡是我們的家。
+這兩天，慢慢來就好。
 </h2>
 
 <p class="reveal">
-我想讓你住一個<br>
-可以什麼都不用做的地方。
+威翰，<br>
+我想和你一起去一個安靜的地方。
+</p>
+
+<p class="reveal">
+有山、有樹，<br>
+還有一個只屬於我們的晚上。
 </p>
 
 
@@ -730,18 +747,32 @@ TONIGHT'S HOME
     onclick="openPhoto(this)">
 
 <div class="photo-placeholder">
-    <span>☂</span>
-    <small>住宿照片之後放進來</small>
+
+<span>☂</span>
+
+<small>
+住宿照片之後放進來
+</small>
+
 </div>
 
 </div>
 
 
 <p class="reveal">
-有田、有樹、有山。<br>
-還有一個晚上，時間只留給我們。
+住進小雨天 VILLA，<br>
+再一起吃一頓小雨淋私廚。
 </p>
 
+<p class="reveal">
+不用特別安排什麼，<br>
+<strong>只要我們在一起，就很好。</strong>
+</p>
+
+
+<p class="small reveal">
+9.05 — 9.06｜宜蘭
+</p>
 
 <a
     href="https://www.twins-villa.com/"
@@ -749,7 +780,7 @@ TONIGHT'S HOME
     rel="noopener"
     class="btn reveal">
 
-看看我們今晚住的地方 ↗
+看看我們要住的地方 ↗
 
 </a>
 
@@ -760,53 +791,7 @@ TONIGHT'S HOME
 
 
 <!-- =========================
-     晚餐
-========================= -->
-
-<section class="dinner">
-
-<div class="container">
-
-<div class="small reveal">
-A DINNER FOR TWO
-</div>
-
-<h2 class="reveal">
-還有一個晚上，<br>
-我偷偷留給你。
-</h2>
-
-
-<div class="card reveal">
-
-<div class="small">
-DINNER
-</div>
-
-<h2>
-小雨淋私廚
-</h2>
-
-<p>
-不用趕著吃完，<br>
-不用趕著回家。
-</p>
-
-<p>
-就好好坐在一起，<br>
-吃一頓只屬於我們的晚餐。
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     行程
+     第五幕｜兩天一夜
 ========================= -->
 
 <section class="story">
@@ -818,7 +803,7 @@ OUR LITTLE TRIP
 </div>
 
 <h2 class="reveal">
-兩天一夜，慢慢來。
+這次，行程不用太滿。
 </h2>
 
 
@@ -832,7 +817,9 @@ OUR LITTLE TRIP
 
 <div>
 <strong>出發</strong><br>
-一起去宜蘭，看看風景、吃點好吃的。
+一起去宜蘭。<br>
+看看沿途的風景，聽聽歌，聊聊天。<br>
+慢慢出發就好。
 </div>
 
 </div>
@@ -846,7 +833,8 @@ OUR LITTLE TRIP
 
 <div>
 <strong>入住</strong><br>
-把行李放下來，也把生活的忙碌放下來。
+把行李放下，<br>
+也把最近累積的疲憊放下。
 </div>
 
 </div>
@@ -859,8 +847,9 @@ OUR LITTLE TRIP
 </div>
 
 <div>
-<strong>生日晚餐</strong><br>
-小雨淋私廚，今晚只管好好陪彼此。
+<strong>生日旅行</strong><br>
+吃一頓我偷偷期待很久的晚餐。<br>
+然後把這個晚上，留給我們兩個。
 </div>
 
 </div>
@@ -874,7 +863,8 @@ OUR LITTLE TRIP
 
 <div>
 <strong>睡到自然醒</strong><br>
-慢慢吃早餐，再一起走走。
+沒有鬧鐘催我們。<br>
+睡到自然醒，慢慢吃早餐，再一起走走。
 </div>
 
 </div>
@@ -888,7 +878,8 @@ OUR LITTLE TRIP
 
 <div>
 <strong>回家</strong><br>
-把兩天的回憶一起帶回去。
+帶著兩天的小小回憶回家。<br>
+然後繼續我們的日常。
 </div>
 
 </div>
@@ -903,9 +894,6 @@ OUR LITTLE TRIP
 
 <!-- =========================
      倒數
-     
-     注意：
-     把下面的日期改成你們真正出發日期
 ========================= -->
 
 <section class="story">
@@ -917,66 +905,95 @@ COUNTING DOWN
 </div>
 
 <h2 class="reveal">
-距離我們出發
+再一下下，<br>
+我們就要出發了。
 </h2>
 
 <p class="reveal">
-還有一點點時間。
+9月5日，<br>
+我想和你一起暫時離開熟悉的日常。
+</p>
+
+<p class="reveal">
+不需要去哪裡打卡，<br>
+也不用把行程排得滿滿的。
+</p>
+
+<p class="reveal">
+<strong>只要有你，就很好。</strong>
 </p>
 
 
 <div class="countdown reveal">
 
 <div class="count-box">
+
 <div
     class="count-number"
     id="days">
 0
 </div>
+
 <div class="count-label">
 DAYS
 </div>
+
 </div>
 
+
 <div class="count-box">
+
 <div
     class="count-number"
     id="hours">
 0
 </div>
+
 <div class="count-label">
 HOURS
 </div>
+
 </div>
 
+
 <div class="count-box">
+
 <div
     class="count-number"
     id="minutes">
 0
 </div>
+
 <div class="count-label">
 MINUTES
 </div>
+
 </div>
 
+
 <div class="count-box">
+
 <div
     class="count-number"
     id="seconds">
 0
 </div>
+
 <div class="count-label">
 SECONDS
 </div>
+
 </div>
 
 </div>
+
 
 <p
     class="reveal"
     id="countdownText">
-期待我們一起出發。
+
+距離我們出發，還有一點點時間。
+
 </p>
 
 </div>
@@ -986,7 +1003,7 @@ SECONDS
 
 
 <!-- =========================
-     最後
+     最後｜生日告白
 ========================= -->
 
 <section class="final">
@@ -999,13 +1016,28 @@ THE REAL GIFT
 
 
 <h2 class="reveal">
-其實我想送你的，<br>
-從來都不是宜蘭。
+其實，我想送你的，<br>
+從來都不只是這趟旅行。
 </h2>
 
 
 <p class="reveal">
-也不是民宿，也不是一頓飯。
+威翰，
+</p>
+
+<p class="reveal">
+我們認識、在一起，<br>
+到現在也才三個月。
+</p>
+
+<p class="reveal">
+三個月其實很短，<br>
+短到我們還有很多故事沒有一起經歷。
+</p>
+
+<p class="reveal">
+但也是因為這樣，<br>
+我更期待我們接下來的日子。
 </p>
 
 
@@ -1015,28 +1047,87 @@ THE REAL GIFT
 
 
 <p class="reveal">
-我想送你的，是我們的時間。
+我想慢慢認識你，<br>
+慢慢了解你的喜歡、你的習慣，<br>
+也想在你累的時候，成為那個可以陪你的人。
 </p>
 
 
 <p class="reveal">
-是兩個人一起出發，<br>
-一起吃飯、一起看風景、一起回家的時間。
+我希望你知道，
 </p>
 
 
-<button
-    class="btn reveal"
-    id="secretBtn">
+<h2 class="reveal">
+你真的已經做得很好了。
+</h2>
 
-🎁 還有一個小秘密
 
-</button>
+<p class="reveal">
+所以不用總是覺得自己還不夠好，<br>
+也不用因為偶爾迷惘，<br>
+就懷疑自己的價值。
+</p>
+
+
+<p class="reveal">
+在我眼裡的你，<br>
+是很認真、很溫柔，<br>
+也是有自己想法、很有魅力的人。
+</p>
+
+
+<p class="reveal">
+我很喜歡你身上的那份獨特。
+</p>
+
+
+<p class="reveal">
+所以以後如果有開心的事情，<br>
+我想陪你一起開心。
+</p>
+
+
+<p class="reveal">
+如果有不順利的時候，<br>
+也沒關係。
+</p>
+
+
+<h2 class="reveal">
+你不用一個人撐著。
+</h2>
+
+
+<p class="reveal">
+<strong>我會在。</strong>
+</p>
+
+
+<p class="reveal">
+我不一定每次都知道該怎麼解決，<br>
+但我可以陪你一起想、一起走。
+</p>
+
+
+<p class="reveal">
+我希望你知道，<br>
+在我這裡，你可以安心做自己。
+</p>
 
 
 <!-- =========================
      生日彩蛋
 ========================= -->
+
+<button
+    class="btn reveal"
+    id="secretBtn">
+
+🎁 威翰，還有一句話想偷偷跟你說
+
+</button>
+
 
 <div
     class="secret"
@@ -1045,54 +1136,92 @@ THE REAL GIFT
 <div class="secret-message">
 
 <div class="small">
-ONE MORE THING
+SEPTEMBER 8
 </div>
 
 <h2>
-生日快樂 ♡
+生日快樂，威翰。
 </h2>
 
 <p>
-謝謝你出現在我的生活裡。
+9月8日，是屬於你的日子。
 </p>
 
 <p>
-有時候我不太會把很多話說出口，<br>
-但我希望你知道，
-我真的很珍惜我們一起度過的每一天。
+很開心今年的生日，<br>
+我可以參與其中。
 </p>
 
 <p>
-所以這次，什麼都不用想。
+雖然我們才在一起三個月，<br>
+但我已經開始期待，<br>
+以後還能陪你度過多少個生日。
 </p>
 
 <p>
-只要跟我一起出發就好了。
+我希望未來的每一年，<br>
+你都還是那個很棒的你。
 </p>
 
 <p>
-去宜蘭、去看雨、去吃飯、去散步。
-</p>
-
-<p>
-然後一起回家。
+可以去做自己喜歡的事情，<br>
+可以追著自己想要的生活，<br>
+也可以偶爾停下來休息。
 </p>
 
 <p>
 <strong>
-生日快樂，我最愛的你。
+不要忘記，你真的很棒。
 </strong>
 </p>
 
-</div>
-
-</div>
-
-
-<p class="reveal">
-希望這趟旅行結束以後，<br>
-我們還可以有很多很多個「一起出發吧」。
+<p>
+而我也會努力成為一個<br>
+可以讓你感到安心的人。
 </p>
+
+<p>
+不管未來遇到什麼，<br>
+我希望我們都可以牽著彼此，<br>
+一起慢慢走。
+</p>
+
+<p>
+<strong>
+生日快樂，威翰。
+</strong>
+</p>
+
+<p>
+三個月只是開始。
+</p>
+
+<p>
+以後的故事，<br>
+我想和你一起寫。
+</p>
+
+<div class="heart">
+♡
+</div>
+
+<p>
+<strong>
+一起出發吧。
+</strong>
+</p>
+
+<p>
+不只是這一次，<br>
+是以後的很多很多次。
+</p>
+
+</div>
+
+</div>
+
+
+<br>
 
 
 <a
@@ -1191,7 +1320,7 @@ function showPlaceholder(img){
 
 
 /* =========================
-   照片放大
+   圖片放大
 ========================= */
 
 const lightbox =
@@ -1275,7 +1404,7 @@ async () => {
         }catch(error){
 
             alert(
-                "如果你有放入 music/birthday.mp3，點擊後就可以播放音樂 ♡"
+                "之後放入 music/birthday.mp3，就可以播放音樂 ♡"
             );
 
         }
@@ -1294,26 +1423,19 @@ async () => {
 
 
 /* =========================
-   生日旅行倒數
+   出發倒數
 ========================= */
 
 /*
-   ⭐ 請修改這裡 ⭐
+   出發日期：
+   2026年9月5日
 
-   格式：
-
-   YYYY-MM-DDTHH:MM:SS
-
-   例如：
-
-   2026年9月20日晚上8點
-   就寫：
-
-   2026-09-20T20:00:00
+   如果要修改時間，
+   改下面這一行即可。
 */
 
 const tripDate =
-new Date("2026-09-20T09:00:00");
+new Date("2026-09-05T09:00:00");
 
 
 function updateCountdown(){
@@ -1403,7 +1525,7 @@ setInterval(
 
 
 /* =========================
-   生日秘密彩蛋
+   生日秘密
 ========================= */
 
 const secretBtn =
@@ -1419,10 +1541,11 @@ secretBtn.addEventListener(
 
     secret.classList.toggle("open");
 
+
     if(secret.classList.contains("open")){
 
         secretBtn.textContent =
-        "♡ 我想對你說";
+        "♡ 給威翰的話";
 
         setTimeout(() => {
 
@@ -1436,7 +1559,7 @@ secretBtn.addEventListener(
     }else{
 
         secretBtn.textContent =
-        "🎁 還有一個小秘密";
+        "🎁 威翰，還有一句話想偷偷跟你說";
 
     }
 
