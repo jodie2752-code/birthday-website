@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>下點小雨，也沒關係 ☂️</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:#111718;
+    color:#f7f4ee;
+    font-family:"Zen Maru Gothic",sans-serif;
+    line-height:1.9;
+}
+
+section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:90px 25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.container{
+    width:min(900px,100%);
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.serif{
+    font-family:"Noto Serif TC",serif;
+}
+
+.small{
+    font-size:12px;
+    letter-spacing:.3em;
+    opacity:.6;
+}
+
+h1,h2{
+    font-family:"Noto Serif TC",serif;
+    font-weight:500;
+}
+
+h1{
+    font-size:clamp(45px,9vw,90px);
+    line-height:1.3;
+}
+
+h2{
+    font-size:clamp(32px,6vw,58px);
+    line-height:1.4;
+}
+
+p{
+    font-size:18px;
+    color:#d9dedc;
+}
+
+/* =========================
+   按鈕
+========================= */
+
+.btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:13px 30px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;
+    color:white;
+    text-decoration:none;
+    transition:.4s;
+    cursor:pointer;
+    background:transparent;
+    font-family:inherit;
+}
+
+.btn:hover{
+    background:rgba(255,255,255,.1);
+    transform:translateY(-3px);
+}
+
+/* =========================
+   音樂按鈕
+========================= */
+
+.music-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:100;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(10,15,16,.65);
+    color:white;
+    backdrop-filter:blur(8px);
+    cursor:pointer;
+    font-size:20px;
+}
+
+/* =========================
+   第一幕
+========================= */
+
+.hero{
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(66,82,82,.35),
+            transparent 60%
+        ),
+        linear-gradient(
+            rgba(10,18,20,.72),
+            rgba(10,18,20,.95)
+        );
+}
+
+/* =========================
+   雨
+========================= */
+
+.rain{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.drop{
+    position:absolute;
+    top:-100px;
+    width:1px;
+    height:75px;
+    background:linear-gradient(
+        transparent,
+        rgba(255,255,255,.4)
+    );
+    animation:rain linear infinite;
+}
+
+@keyframes rain{
+
+    from{
+        transform:translateY(-120px) translateX(0);
+    }
+
+    to{
+        transform:translateY(115vh) translateX(-40px);
+    }
+
+}
+
+/* =========================
+   故事
+========================= */
+
+.story{
+    background:#202a2a;
+}
+
+/* =========================
+   宜蘭
+========================= */
+
+.destination{
+    background:#e3e7e3;
+    color:#263232;
+}
+
+.destination p{
+    color:#596463;
+}
+
+.destination h1,
+.destination h2{
+    color:#263232;
+}
+
+.card{
+    background:rgba(255,255,255,.55);
+    border-radius:30px;
+    padding:35px;
+    margin:30px auto;
+    max-width:700px;
+    box-shadow:0 15px 40px rgba(30,45,45,.08);
+}
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:25px;
+}
+
+.info div{
+    padding:15px;
+    border-radius:18px;
+    background:rgba(255,255,255,.5);
+}
+
+.info b{
+    display:block;
+    font-size:11px;
+    letter-spacing:.2em;
+    margin-bottom:5px;
+}
+
+/* =========================
+   照片
+========================= */
+
+.photo{
+    width:min(750px,100%);
+    aspect-ratio:16/10;
+    margin:35px auto;
+    border-radius:25px;
+    overflow:hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #334040,
+            #1c2526
+        );
+    position:relative;
+    cursor:pointer;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.6s;
+}
+
+.photo:hover img{
+    transform:scale(1.04);
+}
+
+.photo-placeholder{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:rgba(255,255,255,.6);
+}
+
+.photo-placeholder span{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.photo-placeholder small{
+    letter-spacing:.15em;
+}
+
+/* =========================
+   圖片放大
+========================= */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.88);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    padding:20px;
+}
+
+.lightbox.show{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:95%;
+    max-height:90vh;
+    border-radius:15px;
+    object-fit:contain;
+}
+
+.close-lightbox{
+    position:absolute;
+    top:20px;
+    right:25px;
+    font-size:35px;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   住宿
+========================= */
+
+.stay{
+    background:#172224;
+}
+
+/* =========================
+   晚餐
+========================= */
+
+.dinner{
+    background:#211e1b;
+}
+
+/* =========================
+   行程
+========================= */
+
+.timeline{
+    max-width:650px;
+    margin:40px auto;
+    text-align:left;
+}
+
+.item{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:20px;
+    padding:25px 0;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.day{
+    font-family:"Noto Serif TC";
+    font-size:25px;
+}
+
+.item strong{
+    font-size:18px;
+}
+
+/* =========================
+   倒數
+========================= */
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:40px 0;
+}
+
+.count-box{
+    min-width:85px;
+    padding:15px 10px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    background:rgba(255,255,255,.04);
+}
+
+.count-number{
+    font-family:"Noto Serif TC",serif;
+    font-size:30px;
+}
+
+.count-label{
+    font-size:11px;
+    opacity:.55;
+    letter-spacing:.15em;
+}
+
+/* =========================
+   最後
+========================= */
+
+.final{
+    background:
+        radial-gradient(
+            circle at center,
+            #3b4544,
+            #101516 65%
+        );
+}
+
+.heart{
+    font-size:55px;
+    margin:25px;
+    animation:heartbeat 2s infinite;
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+
+}
+
+/* =========================
+   彩蛋
+========================= */
+
+.secret{
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    transition:
+        max-height 1.5s ease,
+        opacity 1s ease;
+}
+
+.secret.open{
+    max-height:700px;
+    opacity:1;
+}
+
+.secret-message{
+    margin:35px auto;
+    padding:35px;
+    max-width:650px;
+    border-top:1px solid rgba(255,255,255,.2);
+    border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.secret-message p{
+    line-height:2.2;
+}
+
+/* =========================
+   滑入動畫
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+/* =========================
+   手機
+========================= */
+
+@media(max-width:600px){
+
+    section{
+        padding:70px 20px;
+    }
+
+    .info{
+        grid-template-columns:1fr;
+    }
+
+    .item{
+        grid-template-columns:55px 1fr;
+        gap:12px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .countdown{
+        gap:7px;
+    }
+
+    .count-box{
+        min-width:65px;
+        padding:12px 5px;
+    }
+
+    .count-number{
+        font-size:23px;
+    }
+
+    .count-label{
+        font-size:9px;
+    }
+
+    .music-btn{
+        top:15px;
+        right:15px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     音樂
+========================= -->
+
+<audio id="bgMusic" loop>
+    <source src="music/birthday.mp3" type="audio/mpeg">
+</audio>
+
+<button
+    class="music-btn"
+    id="musicBtn"
+    title="播放音樂">
+    ♫
+</button>
+
+
+<!-- =========================
+     圖片放大
+========================= -->
+
+<div
+    class="lightbox"
+    id="lightbox">
+
+    <div
+        class="close-lightbox"
+        id="closeLightbox">
+        ×
+    </div>
+
+    <img
+        id="lightboxImg"
+        src=""
+        alt="放大的照片">
+
+</div>
+
+
+<!-- =========================
+     第一幕
+========================= -->
+
+<section class="hero">
+
+<div class="rain" id="rain"></div>
+
+<div class="container">
+
+<div class="small reveal">
+A BIRTHDAY TRIP FOR YOU
+</div>
+
+<h1 class="reveal">
+下點小雨，<br>
+也沒關係。
+</h1>
+
+<p class="reveal">
+因為這次，我想跟你一起出發。
+</p>
+
+<a
+    href="#story"
+    class="btn reveal">
+
+☂ 打開這份生日禮物
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     故事
+========================= -->
+
+<section id="story" class="story">
+
+<div class="container">
+
+<div class="small reveal">
+FOR MY FAVORITE PERSON
+</div>
+
+<h2 class="reveal">
+我想送你的，<br>
+不是一個東西。
+</h2>
+
+<p class="reveal">
+而是兩天一夜。
+</p>
+
+<p class="reveal">
+不用趕著工作，<br>
+不用想太多事情。
+</p>
+
+<p class="reveal">
+就跟我一起，離開日常一下。
+</p>
+
+
+<div class="photo reveal">
+
+<img
+    src="images/photo01.jpg"
+    alt="我們的照片"
+    onerror="showPlaceholder(this)"
+    onclick="openPhoto(this)">
+
+<div class="photo-placeholder">
+    <span>♡</span>
+    <small>照片之後放進來</small>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     宜蘭揭曉
+========================= -->
+
+<section class="destination">
+
+<div class="container">
+
+<div class="small reveal">
+DESTINATION REVEAL
+</div>
+
+<h2 class="reveal">
+那麼，去哪裡？
+</h2>
+
+<p class="reveal">
+一滴雨，是一個提示。
+</p>
+
+
+<div class="card reveal">
+
+<h1>
+宜蘭
+</h1>
+
+<p>
+2 DAYS · 1 NIGHT
+</p>
+
+
+<div class="info">
+
+<div>
+<b>STAY</b>
+小雨天 VILLA
+</div>
+
+<div>
+<b>DINNER</b>
+小雨淋私廚
+</div>
+
+<div>
+<b>MOOD</b>
+慢慢來
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     住宿
+========================= -->
+
+<section class="stay">
+
+<div class="container">
+
+<div class="small reveal">
+TONIGHT'S HOME
+</div>
+
+<h2 class="reveal">
+今晚，這裡是我們的家。
+</h2>
+
+<p class="reveal">
+我想讓你住一個<br>
+可以什麼都不用做的地方。
+</p>
+
+
+<div class="photo reveal">
+
+<img
+    src="images/photo02.jpg"
+    alt="小雨天 VILLA"
+    onerror="showPlaceholder(this)"
+    onclick="openPhoto(this)">
+
+<div class="photo-placeholder">
+    <span>☂</span>
+    <small>住宿照片之後放進來</small>
+</div>
+
+</div>
+
+
+<p class="reveal">
+有田、有樹、有山。<br>
+還有一個晚上，時間只留給我們。
+</p>
+
+
+<a
+    href="https://www.twins-villa.com/"
+    target="_blank"
+    rel="noopener"
+    class="btn reveal">
+
+看看我們今晚住的地方 ↗
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     晚餐
+========================= -->
+
+<section class="dinner">
+
+<div class="container">
+
+<div class="small reveal">
+A DINNER FOR TWO
+</div>
+
+<h2 class="reveal">
+還有一個晚上，<br>
+我偷偷留給你。
+</h2>
+
+
+<div class="card reveal">
+
+<div class="small">
+DINNER
+</div>
+
+<h2>
+小雨淋私廚
+</h2>
+
+<p>
+不用趕著吃完，<br>
+不用趕著回家。
+</p>
+
+<p>
+就好好坐在一起，<br>
+吃一頓只屬於我們的晚餐。
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     行程
+========================= -->
+
+<section class="story">
+
+<div class="container">
+
+<div class="small reveal">
+OUR LITTLE TRIP
+</div>
+
+<h2 class="reveal">
+兩天一夜，慢慢來。
+</h2>
+
+
+<div class="timeline">
+
+<div class="item reveal">
+
+<div class="day">
+01
+</div>
+
+<div>
+<strong>出發</strong><br>
+一起去宜蘭，看看風景、吃點好吃的。
+</div>
+
+</div>
+
+
+<div class="item reveal">
+
+<div class="day">
+01
+</div>
+
+<div>
+<strong>入住</strong><br>
+把行李放下來，也把生活的忙碌放下來。
+</div>
+
+</div>
+
+
+<div class="item reveal">
+
+<div class="day">
+01
+</div>
+
+<div>
+<strong>生日晚餐</strong><br>
+小雨淋私廚，今晚只管好好陪彼此。
+</div>
+
+</div>
+
+
+<div class="item reveal">
+
+<div class="day">
+02
+</div>
+
+<div>
+<strong>睡到自然醒</strong><br>
+慢慢吃早餐，再一起走走。
+</div>
+
+</div>
+
+
+<div class="item reveal">
+
+<div class="day">
+02
+</div>
+
+<div>
+<strong>回家</strong><br>
+把兩天的回憶一起帶回去。
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     倒數
+     
+     注意：
+     把下面的日期改成你們真正出發日期
+========================= -->
+
+<section class="story">
+
+<div class="container">
+
+<div class="small reveal">
+COUNTING DOWN
+</div>
+
+<h2 class="reveal">
+距離我們出發
+</h2>
+
+<p class="reveal">
+還有一點點時間。
+</p>
+
+
+<div class="countdown reveal">
+
+<div class="count-box">
+<div
+    class="count-number"
+    id="days">
+0
+</div>
+<div class="count-label">
+DAYS
+</div>
+</div>
+
+<div class="count-box">
+<div
+    class="count-number"
+    id="hours">
+0
+</div>
+<div class="count-label">
+HOURS
+</div>
+</div>
+
+<div class="count-box">
+<div
+    class="count-number"
+    id="minutes">
+0
+</div>
+<div class="count-label">
+MINUTES
+</div>
+</div>
+
+<div class="count-box">
+<div
+    class="count-number"
+    id="seconds">
+0
+</div>
+<div class="count-label">
+SECONDS
+</div>
+</div>
+
+</div>
+
+<p
+    class="reveal"
+    id="countdownText">
+期待我們一起出發。
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     最後
+========================= -->
+
+<section class="final">
+
+<div class="container">
+
+<div class="small reveal">
+THE REAL GIFT
+</div>
+
+
+<h2 class="reveal">
+其實我想送你的，<br>
+從來都不是宜蘭。
+</h2>
+
+
+<p class="reveal">
+也不是民宿，也不是一頓飯。
+</p>
+
+
+<div class="heart reveal">
+♡
+</div>
+
+
+<p class="reveal">
+我想送你的，是我們的時間。
+</p>
+
+
+<p class="reveal">
+是兩個人一起出發，<br>
+一起吃飯、一起看風景、一起回家的時間。
+</p>
+
+
+<button
+    class="btn reveal"
+    id="secretBtn">
+
+🎁 還有一個小秘密
+
+</button>
+
+
+<!-- =========================
+     生日彩蛋
+========================= -->
+
+<div
+    class="secret"
+    id="secret">
+
+<div class="secret-message">
+
+<div class="small">
+ONE MORE THING
+</div>
+
+<h2>
+生日快樂 ♡
+</h2>
+
+<p>
+謝謝你出現在我的生活裡。
+</p>
+
+<p>
+有時候我不太會把很多話說出口，<br>
+但我希望你知道，
+我真的很珍惜我們一起度過的每一天。
+</p>
+
+<p>
+所以這次，什麼都不用想。
+</p>
+
+<p>
+只要跟我一起出發就好了。
+</p>
+
+<p>
+去宜蘭、去看雨、去吃飯、去散步。
+</p>
+
+<p>
+然後一起回家。
+</p>
+
+<p>
+<strong>
+生日快樂，我最愛的你。
+</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<p class="reveal">
+希望這趟旅行結束以後，<br>
+我們還可以有很多很多個「一起出發吧」。
+</p>
+
+
+<a
+    href="#story"
+    class="btn reveal">
+
+☂ 再看一次
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* =========================
+   產生雨滴
+========================= */
+
+const rain =
+document.getElementById("rain");
+
+for(let i = 0; i < 60; i++){
+
+    const drop =
+    document.createElement("div");
+
+    drop.className = "drop";
+
+    drop.style.left =
+    Math.random() * 100 + "%";
+
+    drop.style.height =
+    (40 + Math.random() * 70) + "px";
+
+    drop.style.animationDuration =
+    (0.7 + Math.random() * 1.5) + "s";
+
+    drop.style.animationDelay =
+    Math.random() * 2 + "s";
+
+    drop.style.opacity =
+    0.15 + Math.random() * 0.55;
+
+    rain.appendChild(drop);
+}
+
+
+/* =========================
+   滑入動畫
+========================= */
+
+const observer =
+new IntersectionObserver(
+(entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target
+            .classList
+            .add("show");
+
+        }
+
+    });
+
+},
+{
+    threshold:0.15
+});
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(el => {
+
+    observer.observe(el);
+
+});
+
+
+/* =========================
+   照片不存在時顯示預留
+========================= */
+
+function showPlaceholder(img){
+
+    img.style.display = "none";
+
+}
+
+
+/* =========================
+   照片放大
+========================= */
+
+const lightbox =
+document.getElementById("lightbox");
+
+const lightboxImg =
+document.getElementById("lightboxImg");
+
+const closeLightbox =
+document.getElementById("closeLightbox");
+
+
+function openPhoto(img){
+
+    if(
+        img.style.display === "none" ||
+        !img.complete ||
+        img.naturalWidth === 0
+    ){
+
+        return;
+
+    }
+
+    lightboxImg.src = img.src;
+
+    lightbox.classList.add("show");
+
+}
+
+
+closeLightbox.addEventListener(
+"click",
+() => {
+
+    lightbox.classList.remove("show");
+
+});
+
+
+lightbox.addEventListener(
+"click",
+(e) => {
+
+    if(e.target === lightbox){
+
+        lightbox.classList.remove("show");
+
+    }
+
+});
+
+
+/* =========================
+   音樂
+========================= */
+
+const music =
+document.getElementById("bgMusic");
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+let musicPlaying = false;
+
+
+musicBtn.addEventListener(
+"click",
+async () => {
+
+    if(!musicPlaying){
+
+        try{
+
+            await music.play();
+
+            musicPlaying = true;
+
+            musicBtn.innerHTML = "🔊";
+
+        }catch(error){
+
+            alert(
+                "如果你有放入 music/birthday.mp3，點擊後就可以播放音樂 ♡"
+            );
+
+        }
+
+    }else{
+
+        music.pause();
+
+        musicPlaying = false;
+
+        musicBtn.innerHTML = "♫";
+
+    }
+
+});
+
+
+/* =========================
+   生日旅行倒數
+========================= */
+
+/*
+   ⭐ 請修改這裡 ⭐
+
+   格式：
+
+   YYYY-MM-DDTHH:MM:SS
+
+   例如：
+
+   2026年9月20日晚上8點
+   就寫：
+
+   2026-09-20T20:00:00
+*/
+
+const tripDate =
+new Date("2026-09-20T09:00:00");
+
+
+function updateCountdown(){
+
+    const now =
+    new Date();
+
+    const difference =
+    tripDate - now;
+
+
+    if(difference <= 0){
+
+        document.getElementById("days")
+        .textContent = "0";
+
+        document.getElementById("hours")
+        .textContent = "0";
+
+        document.getElementById("minutes")
+        .textContent = "0";
+
+        document.getElementById("seconds")
+        .textContent = "0";
+
+        document.getElementById("countdownText")
+        .textContent =
+        "今天，我們出發吧 ☂️";
+
+        return;
+
+    }
+
+
+    const days =
+    Math.floor(
+        difference /
+        (1000 * 60 * 60 * 24)
+    );
+
+
+    const hours =
+    Math.floor(
+        (difference /
+        (1000 * 60 * 60)) % 24
+    );
+
+
+    const minutes =
+    Math.floor(
+        (difference /
+        (1000 * 60)) % 60
+    );
+
+
+    const seconds =
+    Math.floor(
+        (difference /
+        1000) % 60
+    );
+
+
+    document.getElementById("days")
+    .textContent = days;
+
+    document.getElementById("hours")
+    .textContent =
+    String(hours).padStart(2,"0");
+
+    document.getElementById("minutes")
+    .textContent =
+    String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds")
+    .textContent =
+    String(seconds).padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =========================
+   生日秘密彩蛋
+========================= */
+
+const secretBtn =
+document.getElementById("secretBtn");
+
+const secret =
+document.getElementById("secret");
+
+
+secretBtn.addEventListener(
+"click",
+() => {
+
+    secret.classList.toggle("open");
+
+    if(secret.classList.contains("open")){
+
+        secretBtn.textContent =
+        "♡ 我想對你說";
+
+        setTimeout(() => {
+
+            secret.scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+        },300);
+
+    }else{
+
+        secretBtn.textContent =
+        "🎁 還有一個小秘密";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
