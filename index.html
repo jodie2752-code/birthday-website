@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>下點小雨，也沒關係 ☂️</title>
+<title>給威翰的生日旅行 ☂️</title>
 
 <style>
 
@@ -20,8 +20,8 @@ html{
 
 body{
     margin:0;
-    background:#111718;
-    color:#f7f4ee;
+    background:#10232C;
+    color:#F5F7F5;
     font-family:"Zen Maru Gothic",sans-serif;
     line-height:1.9;
 }
@@ -50,10 +50,11 @@ section{
 .small{
     font-size:12px;
     letter-spacing:.3em;
-    opacity:.6;
+    opacity:.65;
 }
 
-h1,h2{
+h1,
+h2{
     font-family:"Noto Serif TC",serif;
     font-weight:500;
 }
@@ -70,8 +71,9 @@ h2{
 
 p{
     font-size:18px;
-    color:#d9dedc;
+    color:#D9E4E7;
 }
+
 
 /* =========================
    按鈕
@@ -81,40 +83,22 @@ p{
     display:inline-block;
     margin-top:35px;
     padding:13px 30px;
-    border:1px solid rgba(255,255,255,.35);
+    border:1px solid rgba(220,235,240,.45);
     border-radius:999px;
-    color:white;
+    color:#F5F7F5;
     text-decoration:none;
     transition:.4s;
     cursor:pointer;
-    background:transparent;
+    background:rgba(255,255,255,.03);
     font-family:inherit;
 }
 
 .btn:hover{
-    background:rgba(255,255,255,.1);
+    background:rgba(170,205,215,.15);
+    border-color:rgba(220,235,240,.7);
     transform:translateY(-3px);
 }
 
-/* =========================
-   音樂
-========================= */
-
-.music-btn{
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:100;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.3);
-    background:rgba(10,15,16,.65);
-    color:white;
-    backdrop-filter:blur(8px);
-    cursor:pointer;
-    font-size:20px;
-}
 
 /* =========================
    第一幕
@@ -124,17 +108,18 @@ p{
     background:
         radial-gradient(
             circle at center,
-            rgba(66,82,82,.35),
+            rgba(95,130,145,.35),
             transparent 60%
         ),
         linear-gradient(
-            rgba(10,18,20,.72),
-            rgba(10,18,20,.95)
+            rgba(16,35,44,.72),
+            rgba(10,25,32,.97)
         );
 }
 
+
 /* =========================
-   雨
+   雨滴
 ========================= */
 
 .rain{
@@ -150,7 +135,7 @@ p{
     height:75px;
     background:linear-gradient(
         transparent,
-        rgba(255,255,255,.4)
+        rgba(220,235,240,.5)
     );
     animation:rain linear infinite;
 }
@@ -167,39 +152,58 @@ p{
 
 }
 
+
 /* =========================
-   故事
+   第二幕
 ========================= */
 
 .story{
-    background:#202a2a;
+    background:
+        linear-gradient(
+            145deg,
+            #203B47,
+            #294858
+        );
 }
 
+
 /* =========================
-   宜蘭
+   宜蘭揭曉
 ========================= */
 
 .destination{
-    background:#e3e7e3;
-    color:#263232;
+    background:
+        linear-gradient(
+            145deg,
+            #E5EEF1,
+            #D5E4E8
+        );
+    color:#233B45;
 }
 
 .destination p{
-    color:#596463;
+    color:#536D76;
 }
 
 .destination h1,
 .destination h2{
-    color:#263232;
+    color:#233B45;
 }
 
+
+/* =========================
+   卡片
+========================= */
+
 .card{
-    background:rgba(255,255,255,.55);
+    background:rgba(255,255,255,.58);
+    border:1px solid rgba(255,255,255,.65);
     border-radius:30px;
     padding:35px;
     margin:30px auto;
     max-width:700px;
-    box-shadow:0 15px 40px rgba(30,45,45,.08);
+    box-shadow:
+        0 15px 40px rgba(28,60,72,.12);
 }
 
 .info{
@@ -212,7 +216,7 @@ p{
 .info div{
     padding:15px;
     border-radius:18px;
-    background:rgba(255,255,255,.5);
+    background:rgba(255,255,255,.52);
 }
 
 .info b{
@@ -221,6 +225,7 @@ p{
     letter-spacing:.2em;
     margin-bottom:5px;
 }
+
 
 /* =========================
    照片
@@ -235,11 +240,13 @@ p{
     background:
         linear-gradient(
             135deg,
-            #334040,
-            #1c2526
+            #486A77,
+            #263F4A
         );
     position:relative;
     cursor:pointer;
+    box-shadow:
+        0 15px 35px rgba(10,30,38,.2);
 }
 
 .photo img{
@@ -261,7 +268,13 @@ p{
     align-items:center;
     justify-content:center;
     flex-direction:column;
-    color:rgba(255,255,255,.6);
+    color:rgba(245,247,245,.65);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(72,106,119,.95),
+            rgba(38,63,74,.95)
+        );
 }
 
 .photo-placeholder span{
@@ -273,6 +286,7 @@ p{
     letter-spacing:.15em;
 }
 
+
 /* =========================
    圖片放大
 ========================= */
@@ -280,7 +294,7 @@ p{
 .lightbox{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.88);
+    background:rgba(8,22,29,.92);
     display:none;
     align-items:center;
     justify-content:center;
@@ -304,9 +318,24 @@ p{
     top:20px;
     right:25px;
     font-size:35px;
-    color:white;
+    color:#F5F7F5;
     cursor:pointer;
 }
+
+
+/* =========================
+   我們的晚上
+========================= */
+
+.stay{
+    background:
+        radial-gradient(
+            circle at top,
+            #345867,
+            #172F3A 65%
+        );
+}
+
 
 /* =========================
    行程
@@ -323,17 +352,20 @@ p{
     grid-template-columns:80px 1fr;
     gap:20px;
     padding:25px 0;
-    border-bottom:1px solid rgba(255,255,255,.15);
+    border-bottom:1px solid rgba(220,235,240,.18);
 }
 
 .day{
     font-family:"Noto Serif TC";
     font-size:25px;
+    color:#BFD5DC;
 }
 
 .item strong{
     font-size:18px;
+    color:#F5F7F5;
 }
+
 
 /* =========================
    倒數
@@ -349,14 +381,16 @@ p{
 .count-box{
     min-width:85px;
     padding:15px 10px;
-    border:1px solid rgba(255,255,255,.2);
+    border:1px solid rgba(220,235,240,.22);
     border-radius:20px;
-    background:rgba(255,255,255,.04);
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(6px);
 }
 
 .count-number{
     font-family:"Noto Serif TC",serif;
     font-size:30px;
+    color:#E3EEF1;
 }
 
 .count-label{
@@ -365,22 +399,24 @@ p{
     letter-spacing:.15em;
 }
 
+
 /* =========================
-   最後
+   最後一幕
 ========================= */
 
 .final{
     background:
         radial-gradient(
             circle at center,
-            #3b4544,
-            #101516 65%
+            #496C78,
+            #142A34 65%
         );
 }
 
 .heart{
     font-size:55px;
     margin:25px;
+    color:#DCECF0;
     animation:heartbeat 2s infinite;
 }
 
@@ -396,6 +432,7 @@ p{
 
 }
 
+
 /* =========================
    生日彩蛋
 ========================= */
@@ -410,7 +447,7 @@ p{
 }
 
 .secret.open{
-    max-height:1000px;
+    max-height:1200px;
     opacity:1;
 }
 
@@ -418,13 +455,15 @@ p{
     margin:35px auto;
     padding:35px;
     max-width:680px;
-    border-top:1px solid rgba(255,255,255,.2);
-    border-bottom:1px solid rgba(255,255,255,.2);
+    border-top:1px solid rgba(220,235,240,.22);
+    border-bottom:1px solid rgba(220,235,240,.22);
 }
 
 .secret-message p{
     line-height:2.2;
+    color:#DDE9EC;
 }
+
 
 /* =========================
    滑入動畫
@@ -442,6 +481,7 @@ p{
     opacity:1;
     transform:none;
 }
+
 
 /* =========================
    手機
@@ -483,11 +523,6 @@ p{
         font-size:9px;
     }
 
-    .music-btn{
-        top:15px;
-        right:15px;
-    }
-
 }
 
 </style>
@@ -495,22 +530,6 @@ p{
 
 
 <body>
-
-
-<!-- =========================
-     背景音樂
-========================= -->
-
-<audio id="bgMusic" loop>
-    <source src="music/birthday.mp3" type="audio/mpeg">
-</audio>
-
-<button
-    class="music-btn"
-    id="musicBtn"
-    title="播放音樂">
-    ♫
-</button>
 
 
 <!-- =========================
@@ -578,7 +597,7 @@ A BIRTHDAY TRIP FOR YOU
 
 
 <!-- =========================
-     第二幕
+     第二幕｜三個月
 ========================= -->
 
 <section id="story" class="story">
@@ -621,7 +640,7 @@ OUR FIRST THREE MONTHS
 <img
     src="images/photo01.jpg"
     alt="我們的照片"
-    onerror="showPlaceholder(this)"
+    onerror="this.style.display='none'"
     onclick="openPhoto(this)">
 
 <div class="photo-placeholder">
@@ -743,7 +762,7 @@ A LITTLE ESCAPE
 <img
     src="images/photo02.jpg"
     alt="小雨天 VILLA"
-    onerror="showPlaceholder(this)"
+    onerror="this.style.display='none'"
     onclick="openPhoto(this)">
 
 <div class="photo-placeholder">
@@ -818,7 +837,7 @@ OUR LITTLE TRIP
 <div>
 <strong>出發</strong><br>
 一起去宜蘭。<br>
-看看沿途的風景，聽聽歌，聊聊天。<br>
+看看沿途的風景，聊聊天。<br>
 慢慢出發就好。
 </div>
 
@@ -893,7 +912,7 @@ OUR LITTLE TRIP
 
 
 <!-- =========================
-     倒數
+     第六幕｜倒數
 ========================= -->
 
 <section class="story">
@@ -1309,17 +1328,6 @@ document
 
 
 /* =========================
-   照片不存在時顯示預留
-========================= */
-
-function showPlaceholder(img){
-
-    img.style.display = "none";
-
-}
-
-
-/* =========================
    圖片放大
 ========================= */
 
@@ -1375,64 +1383,8 @@ lightbox.addEventListener(
 
 
 /* =========================
-   音樂
-========================= */
-
-const music =
-document.getElementById("bgMusic");
-
-const musicBtn =
-document.getElementById("musicBtn");
-
-let musicPlaying = false;
-
-
-musicBtn.addEventListener(
-"click",
-async () => {
-
-    if(!musicPlaying){
-
-        try{
-
-            await music.play();
-
-            musicPlaying = true;
-
-            musicBtn.innerHTML = "🔊";
-
-        }catch(error){
-
-            alert(
-                "之後放入 music/birthday.mp3，就可以播放音樂 ♡"
-            );
-
-        }
-
-    }else{
-
-        music.pause();
-
-        musicPlaying = false;
-
-        musicBtn.innerHTML = "♫";
-
-    }
-
-});
-
-
-/* =========================
    出發倒數
 ========================= */
-
-/*
-   出發日期：
-   2026年9月5日
-
-   如果要修改時間，
-   改下面這一行即可。
-*/
 
 const tripDate =
 new Date("2026-09-05T09:00:00");
