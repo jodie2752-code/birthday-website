@@ -8,231 +8,414 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* ==================================================
-   基本設定
-================================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    margin:0;
-    background:#eaf6fa;
-    color:#496b78;
-    font-family:"Zen Maru Gothic",sans-serif;
-    line-height:1.9;
-    overflow-x:hidden;
+body {
+    margin: 0;
+    overflow-x: hidden;
+
+    background: #d9edf0;
+    color: #456c76;
+
+    font-family:
+        "Zen Maru Gothic",
+        sans-serif;
+
+    line-height: 1.9;
 }
 
-body.locked{
-    overflow:hidden;
+body.locked {
+    overflow: hidden;
 }
 
-section{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:90px 25px;
-    position:relative;
-    overflow:hidden;
+button,
+a {
+    font-family: inherit;
 }
 
-.container{
-    width:min(900px,100%);
-    text-align:center;
-    position:relative;
-    z-index:3;
+section {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    padding:
+        90px 24px;
+
+    overflow: hidden;
+}
+
+.container {
+    width: min(900px, 100%);
+
+    margin: auto;
+
+    position: relative;
+
+    z-index: 20;
+
+    text-align: center;
 }
 
 h1,
 h2,
-h3{
-    font-family:"Noto Serif TC",serif;
-    font-weight:500;
-    color:#315c6d;
+h3 {
+    font-family:
+        "Noto Serif TC",
+        serif;
+
+    font-weight: 500;
 }
 
-h1{
-    font-size:clamp(43px,9vw,78px);
-    line-height:1.35;
+h1 {
+    font-size:
+        clamp(44px, 9vw, 82px);
+
+    line-height: 1.35;
+
+    margin: 20px 0;
 }
 
-h2{
-    font-size:clamp(31px,6vw,54px);
-    line-height:1.5;
+h2 {
+    font-size:
+        clamp(30px, 6vw, 55px);
+
+    line-height: 1.5;
+
+    margin: 20px 0;
 }
 
-p{
-    font-size:17px;
-    color:#496b78;
-    line-height:2.15;
+p {
+    font-size: 17px;
+
+    color: #52737c;
+
+    line-height: 2.15;
 }
 
-.small{
-    font-size:12px;
-    letter-spacing:.3em;
-    color:#7695a0;
+.small {
+    font-size: 10px;
+
+    letter-spacing: .35em;
+
+    color: #78959d;
 }
 
 
-/* ==================================================
-   開場
-================================================== */
+/* =========================================================
+   背景
+========================================================= */
 
-.opening{
-    position:fixed;
-    inset:0;
-    z-index:1000;
+.forest-bg {
+    position: fixed;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dceff1,
+            #b8d5da
+        );
+}
+
+
+/* 山林 */
+
+.mountain {
+    position: absolute;
+
+    left: -10%;
+    bottom: -5%;
+
+    width: 120%;
+    height: 45%;
+
+    opacity: .5;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(52, 103, 108, .18),
+            rgba(46, 87, 96, .04)
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            0 55%,
+            8% 45%,
+            17% 58%,
+            28% 31%,
+            39% 52%,
+            50% 25%,
+            62% 54%,
+            73% 35%,
+            84% 55%,
+            93% 43%,
+            100% 54%,
+            100% 100%
+        );
+}
+
+.mountain.two {
+    bottom: -13%;
+
+    opacity: .28;
+
+    transform:
+        scale(1.15);
+}
+
+
+/* =========================================================
+   薄霧
+========================================================= */
+
+.mist {
+    position: absolute;
+
+    width: 80%;
+    height: 180px;
+
+    border-radius: 50%;
 
     background:
         radial-gradient(
-            circle at 50% 35%,
-            rgba(255,255,255,.9),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            #e5f5fa,
-            #c4e2ec
+            ellipse,
+            rgba(255,255,255,.35),
+            transparent 70%
         );
 
-    transition:
-        opacity 1s ease,
-        visibility 1s ease;
-}
+    filter: blur(20px);
 
-.opening.hide{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-}
-
-.opening-inner{
-    text-align:center;
-    padding:30px;
+    opacity: .7;
 
     animation:
-        openingFloat 3s ease-in-out infinite;
+        mistMove
+        18s
+        ease-in-out
+        infinite alternate;
 }
 
-.opening h1{
-    margin:18px 0 12px;
+.mist.one {
+    top: 25%;
+    left: -20%;
 }
 
-.opening p{
-    margin:0;
+.mist.two {
+    top: 53%;
+    right: -20%;
+
+    animation-delay: 5s;
 }
 
-.open-btn,
-.btn{
-    display:inline-block;
+.mist.three {
+    top: 75%;
+    left: -15%;
 
-    margin-top:32px;
+    opacity: .4;
 
-    padding:13px 30px;
+    animation-delay: 9s;
+}
 
-    border:
-        1px solid
-        rgba(53,94,108,.28);
+@keyframes mistMove {
 
-    border-radius:999px;
+    from {
+        transform:
+            translateX(-5%);
+    }
+
+    to {
+        transform:
+            translateX(18%);
+    }
+}
+
+
+/* =========================================================
+   葉片
+========================================================= */
+
+.leaves {
+    position: absolute;
+
+    inset: 0;
+}
+
+.leaf {
+    position: absolute;
+
+    width: 110px;
+    height: 42px;
+
+    border-radius:
+        100% 0 100% 0;
 
     background:
-        rgba(255,255,255,.5);
+        linear-gradient(
+            135deg,
+            rgba(50,105,106,.24),
+            rgba(80,135,132,.07)
+        );
 
-    color:#426d7c;
+    opacity: .65;
 
-    font:inherit;
+    transform-origin: left center;
 
-    text-decoration:none;
-
-    cursor:pointer;
-
-    transition:.4s ease;
-
-    box-shadow:
-        0 10px 30px
-        rgba(60,104,120,.08);
+    animation:
+        leafMove
+        6s
+        ease-in-out
+        infinite alternate;
 }
 
-.open-btn:hover,
-.btn:hover{
+.leaf::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1px;
+    height: 100%;
+
+    left: 50%;
+    top: 0;
+
     background:
-        rgba(255,255,255,.82);
+        rgba(255,255,255,.25);
+}
+
+.leaf:nth-child(1) {
+    left: -25px;
+    top: 14%;
 
     transform:
-        translateY(-4px);
-
-    box-shadow:
-        0 16px 35px
-        rgba(60,104,120,.14);
+        rotate(25deg);
 }
 
-@keyframes openingFloat{
+.leaf:nth-child(2) {
+    right: -35px;
+    top: 25%;
 
-    0%,
-    100%{
-        transform:translateY(0);
+    transform:
+        rotate(150deg);
+
+    animation-delay: 1s;
+}
+
+.leaf:nth-child(3) {
+    left: -35px;
+    bottom: 25%;
+
+    transform:
+        rotate(35deg)
+        scale(.75);
+
+    animation-delay: 2s;
+}
+
+.leaf:nth-child(4) {
+    right: -35px;
+    bottom: 18%;
+
+    transform:
+        rotate(155deg)
+        scale(.8);
+
+    animation-delay: 3s;
+}
+
+@keyframes leafMove {
+
+    from {
+        transform:
+            rotate(25deg)
+            translateY(-3px);
     }
 
-    50%{
-        transform:translateY(-8px);
+    to {
+        transform:
+            rotate(31deg)
+            translateY(7px);
     }
-
 }
 
 
-/* ==================================================
+/* =========================================================
    雨滴
-================================================== */
+========================================================= */
 
-.rain{
-    position:fixed;
+.rain {
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    pointer-events:none;
+    z-index: 5;
 
-    z-index:1;
+    pointer-events: none;
 
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.drop{
-    position:absolute;
+.drop {
+    position: absolute;
 
-    top:-100px;
+    top: -120px;
 
-    width:1px;
+    width: 1px;
 
     background:
         linear-gradient(
             to bottom,
             transparent,
-            rgba(255,255,255,.72)
+            rgba(255,255,255,.58)
         );
 
     animation:
-        rainFall linear infinite;
+        rainFall
+        linear
+        infinite;
 }
 
-@keyframes rainFall{
+.drop.far {
+    opacity: .2;
+}
 
-    from{
+.drop.mid {
+    opacity: .4;
+}
+
+.drop.near {
+    opacity: .65;
+}
+
+@keyframes rainFall {
+
+    from {
         transform:
             translate3d(
                 0,
@@ -241,126 +424,485 @@ p{
             );
     }
 
-    to{
+    to {
         transform:
             translate3d(
-                -80px,
+                -75px,
                 115vh,
                 0
             );
     }
-
 }
 
 
-/* ==================================================
-   滑入動畫
-================================================== */
+/* =========================================================
+   9/5 倒數畫面
+========================================================= */
 
-.reveal{
-    opacity:0;
+.countdown-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 3000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(255,255,255,.85),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #d9eef1,
+            #a9cdd3
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+.countdown-screen.hide {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.countdown-inner {
+    width: min(700px, 92%);
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+.countdown-icon {
+    font-size: 58px;
+
+    margin-bottom: 12px;
+
+    animation:
+        umbrellaFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+.countdown-title {
+    color: #315e69;
+
+    font-family:
+        "Noto Serif TC",
+        serif;
+
+    font-size:
+        clamp(30px, 6vw, 52px);
+
+    margin:
+        10px 0 15px;
+}
+
+.countdown-subtitle {
+    color: #66838c;
+
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+.countdown {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin: 30px auto;
+}
+
+.time-box {
+    min-width: 90px;
+
+    padding:
+        16px 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.58);
+
+    border:
+        1px solid
+        rgba(65,106,116,.13);
+
+    box-shadow:
+        0 15px 35px
+        rgba(50,90,101,.10);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.time-number {
+    display: block;
+
+    font-family:
+        "Noto Serif TC",
+        serif;
+
+    font-size: 34px;
+
+    color: #426f7a;
+
+    line-height: 1.2;
+}
+
+.time-label {
+    font-size: 9px;
+
+    letter-spacing: .16em;
+
+    color: #79949b;
+}
+
+.unlock-message {
+    display: none;
+
+    animation:
+        unlockShow
+        1.5s
+        ease both;
+}
+
+.unlock-message.show {
+    display: block;
+}
+
+.unlock-icon {
+    font-size: 62px;
+
+    margin-bottom: 10px;
+
+    animation:
+        unlockPop
+        1.2s
+        ease both;
+}
+
+.unlock-message h2 {
+    color: #315f6b;
+
+    margin: 10px 0;
+}
+
+.unlock-message p {
+    color: #5f7f88;
+}
+
+.preview-label {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding:
+        5px 14px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.5);
+
+    color: #75929a;
+
+    font-size: 9px;
+
+    letter-spacing: .15em;
+}
+
+@keyframes umbrellaFloat {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateY(-9px)
+            rotate(3deg);
+    }
+}
+
+@keyframes unlockPop {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(.5)
+            rotate(-15deg);
+    }
+
+    70% {
+        transform:
+            scale(1.15)
+            rotate(4deg);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+@keyframes unlockShow {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   開場禮物
+========================================================= */
+
+.opening {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2500;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(248,253,253,.96),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #d9eef1,
+            #a9cdd2
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.opening.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.opening.hide {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.opening-inner {
+    text-align: center;
+
+    padding: 30px;
+
+    animation:
+        openingFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+.umbrella {
+    font-size: 60px;
+
+    margin: 10px 0;
+
+    animation:
+        umbrellaFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+.opening h1 {
+    color: #315c67;
+
+    margin:
+        18px 0 12px;
+}
+
+.opening p {
+    color: #52747e;
+}
+
+.open-btn,
+.btn {
+    display: inline-block;
+
+    margin-top: 28px;
+
+    padding:
+        12px 28px;
+
+    border:
+        1px solid
+        rgba(55,96,108,.28);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.5);
+
+    color: #426c77;
+
+    font-size: 15px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        .4s ease;
+
+    box-shadow:
+        0 12px 30px
+        rgba(45,90,104,.09);
+}
+
+.open-btn:hover,
+.btn:hover {
+    background:
+        rgba(255,255,255,.82);
 
     transform:
-        translateY(38px);
+        translateY(-4px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(45,90,104,.16);
+}
+
+@keyframes openingFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-5px);
+    }
+}
+
+
+/* =========================================================
+   滑入動畫
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(40px);
 
     transition:
         opacity 1s ease,
         transform 1s ease;
 }
 
-.reveal.show{
-    opacity:1;
+.reveal.show {
+    opacity: 1;
 
-    transform:none;
+    transform:
+        translateY(0);
 }
 
-.delay1{
-    transition-delay:.15s;
+.delay1 {
+    transition-delay: .15s;
 }
 
-.delay2{
-    transition-delay:.3s;
+.delay2 {
+    transition-delay: .3s;
 }
 
-.delay3{
-    transition-delay:.45s;
+.delay3 {
+    transition-delay: .45s;
 }
 
 
-/* ==================================================
-   第一幕
-================================================== */
+/* =========================================================
+   HERO
+========================================================= */
 
-.hero{
-
+.hero {
     background:
-
         radial-gradient(
-            circle at 20% 25%,
-            rgba(255,255,255,.72),
-            transparent 28%
+            circle at 20% 20%,
+            rgba(255,255,255,.5),
+            transparent 30%
         ),
-
-        radial-gradient(
-            circle at 85% 70%,
-            rgba(172,211,225,.45),
-            transparent 32%
-        ),
-
         linear-gradient(
             145deg,
-            #e8f6fa,
-            #cde7f0
+            rgba(217,239,242,.96),
+            rgba(184,216,222,.92)
         );
 }
 
-.umbrella{
-    font-size:55px;
-
-    display:block;
-
-    margin-bottom:18px;
-
-    animation:
-        umbrellaFloat
-        3.2s
-        ease-in-out
-        infinite;
+.hero h1 {
+    color: #315e6b;
 }
 
-@keyframes umbrellaFloat{
-
-    0%,
-    100%{
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-
-    50%{
-        transform:
-            translateY(-10px)
-            rotate(2deg);
-    }
-
+.hero p {
+    color: #527580;
 }
 
-.hero h1{
-    margin:0;
-}
+.scroll {
+    margin-top: 45px;
 
-.hero p{
-    margin-top:20px;
-}
+    color: #77949d;
 
-.scroll{
-    margin-top:48px;
+    font-size: 10px;
 
-    color:#7b9aa4;
-
-    font-size:12px;
-
-    letter-spacing:.25em;
+    letter-spacing: .25em;
 
     animation:
         breathe
@@ -369,191 +911,193 @@ p{
         infinite;
 }
 
-@keyframes breathe{
+@keyframes breathe {
 
-    0%,
-    100%{
-        opacity:.35;
+    0%,100% {
+        opacity: .35;
     }
 
-    50%{
-        opacity:1;
+    50% {
+        opacity: 1;
     }
-
 }
 
 
-/* ==================================================
-   故事
-================================================== */
+/* =========================================================
+   STORY
+========================================================= */
 
-.story{
-
+.story {
     background:
         linear-gradient(
             145deg,
-            #d9edf4,
-            #edf8fb
+            rgba(196,224,228,.96),
+            rgba(224,241,243,.96)
         );
 }
 
-.card{
+.card {
+    max-width: 700px;
+
+    margin:
+        35px auto;
+
+    padding:
+        38px 30px;
+
+    border-radius: 28px;
 
     background:
-        rgba(255,255,255,.72);
+        rgba(247,252,253,.68);
 
     border:
         1px solid
-        rgba(67,111,126,.18);
-
-    border-radius:28px;
-
-    padding:38px 30px;
-
-    margin:35px auto;
-
-    max-width:700px;
+        rgba(68,111,121,.14);
 
     box-shadow:
         0 18px 55px
-        rgba(53,101,119,.13);
+        rgba(48,88,99,.12);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(12px);
 
-    transition:.5s ease;
+    transition:
+        .5s ease;
 }
 
-.card:hover{
-
+.card:hover {
     transform:
-        translateY(-7px);
+        translateY(-6px);
 
     box-shadow:
         0 25px 65px
-        rgba(53,101,119,.18);
+        rgba(48,88,99,.18);
 }
 
-.number{
-
+.number {
     font-family:
         "Noto Serif TC",
         serif;
 
-    font-size:72px;
+    font-size: 72px;
 
-    line-height:1;
+    line-height: 1;
 
-    color:#507f90;
+    color: #527f89;
 }
 
-.divider{
+.divider {
+    width: 45px;
 
-    width:45px;
+    height: 1px;
 
-    height:1px;
+    margin:
+        25px auto;
 
     background:
-        rgba(60,105,120,.28);
-
-    margin:25px auto;
+        rgba(63,105,116,.28);
 }
 
 
-/* ==================================================
-   小互動：偷偷點一下
-================================================== */
+/* =========================================================
+   偷偷點一下
+========================================================= */
 
-.secret-btn{
+.secret-btn {
+    margin-top: 20px;
 
-    margin-top:24px;
-
-    padding:10px 22px;
+    padding:
+        10px 22px;
 
     border:
         1px solid
-        rgba(62,104,119,.22);
+        rgba(62,104,115,.22);
 
-    border-radius:999px;
+    border-radius: 999px;
 
-    background:transparent;
+    background:
+        transparent;
 
-    color:#668793;
+    color: #638590;
 
-    font:inherit;
+    font-size: 14px;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.3s;
+    transition: .3s;
 }
 
-.secret-btn:hover{
-
+.secret-btn:hover {
     background:
         rgba(255,255,255,.5);
 }
 
-.secret-text{
+.secret-text {
+    max-height: 0;
 
-    max-height:0;
+    overflow: hidden;
 
-    overflow:hidden;
-
-    opacity:0;
+    opacity: 0;
 
     transform:
         translateY(8px);
 
-    transition:.7s ease;
+    transition:
+        .7s ease;
 }
 
-.secret-text.open{
+.secret-text.open {
+    max-height: 200px;
 
-    max-height:150px;
+    opacity: 1;
 
-    opacity:1;
+    transform:
+        translateY(0);
 
-    transform:none;
-
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 
-/* ==================================================
-   照片
-================================================== */
+/* =========================================================
+   PHOTO
+========================================================= */
 
-.photo-section{
-
-    background:#eaf5f9;
+.photo-section {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(211,235,239,.97),
+            rgba(232,245,247,.97)
+        );
 }
 
-.photo-grid{
+.photo-grid {
+    width: min(850px, 100%);
 
-    width:min(850px,100%);
+    margin:
+        42px auto 0;
 
-    margin:42px auto 0;
-
-    display:grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(2, 1fr);
 
-    gap:28px;
+    gap: 28px;
 }
 
-.photo-card{
+.photo-card {
+    background: white;
 
-    background:#fff;
+    padding:
+        10px 10px 18px;
 
-    padding:10px 10px 18px;
-
-    border-radius:10px;
+    border-radius: 10px;
 
     box-shadow:
         0 18px 45px
-        rgba(50,91,106,.15);
+        rgba(48,87,99,.16);
 
-    opacity:0;
+    opacity: 0;
 
     transition:
         opacity 1s ease,
@@ -561,38 +1105,33 @@ p{
         box-shadow .35s ease;
 }
 
-.photo-card:nth-child(1){
-
+.photo-card:nth-child(1) {
     transform:
         rotate(-2deg)
         translateY(45px);
 }
 
-.photo-card:nth-child(2){
-
+.photo-card:nth-child(2) {
     transform:
         rotate(2deg)
         translateY(45px);
 }
 
-.photo-card.show{
-
-    opacity:1;
+.photo-card.show {
+    opacity: 1;
 
     transform:
         rotate(-2deg)
         translateY(0);
 }
 
-.photo-card:nth-child(2).show{
-
+.photo-card:nth-child(2).show {
     transform:
         rotate(2deg)
         translateY(0);
 }
 
-.photo-card:hover{
-
+.photo-card:hover {
     transform:
         rotate(0)
         translateY(-8px)
@@ -600,208 +1139,206 @@ p{
 
     box-shadow:
         0 25px 55px
-        rgba(50,91,106,.22);
+        rgba(48,87,99,.23);
 }
 
-.photo-card img{
+.photo-card img {
+    width: 100%;
 
-    width:100%;
+    aspect-ratio: 16 / 10;
 
-    aspect-ratio:16/10;
+    object-fit: cover;
 
-    object-fit:cover;
+    display: block;
 
-    display:block;
+    border-radius: 6px;
 
-    border-radius:6px;
+    transition:
+        transform .8s ease,
+        filter .8s ease;
 }
 
-.photo-caption{
+.photo-card:hover img {
+    transform:
+        scale(1.035);
 
-    padding-top:12px;
-
-    color:#76929c;
-
-    font-size:13px;
-
-    letter-spacing:.08em;
+    filter:
+        saturate(1.05)
+        contrast(1.02);
 }
 
+.photo-caption {
+    padding-top: 12px;
 
-/* ==================================================
-   雨天選擇互動
-================================================== */
+    color: #76939c;
 
-.choice-buttons{
+    font-size: 13px;
 
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-}
-
-.choice-result{
-
-    min-height:65px;
-
-    margin-top:25px;
+    letter-spacing: .08em;
 }
 
 
-/* ==================================================
+/* =========================================================
+   小互動
+========================================================= */
+
+.choice-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.choice-result {
+    min-height: 65px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
    宜蘭
-================================================== */
+========================================================= */
 
-.destination{
-
+.destination {
     background:
-
         radial-gradient(
             circle at 80% 20%,
-            rgba(255,255,255,.65),
+            rgba(255,255,255,.62),
             transparent 30%
         ),
-
         linear-gradient(
             145deg,
-            #cfe7ef,
-            #e7f4f8
+            rgba(177,210,216,.97),
+            rgba(216,236,239,.97)
         );
 }
 
-.destination h1{
+.destination h1 {
+    color: #315f69;
 
     margin:
-        15px 0 5px;
+        12px 0 4px;
 
     font-size:
-        clamp(48px,10vw,85px);
+        clamp(52px, 10vw, 90px);
 }
 
-.info{
-
-    display:grid;
+.info {
+    display: grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, 1fr);
 
-    gap:12px;
+    gap: 12px;
 
-    margin-top:28px;
+    margin-top: 28px;
 }
 
-.info div{
+.info div {
+    padding:
+        18px 12px;
 
-    padding:18px 12px;
-
-    border-radius:18px;
+    border-radius: 18px;
 
     background:
-        rgba(255,255,255,.5);
+        rgba(255,255,255,.48);
 
-    color:#52727e;
+    color: #557580;
 }
 
-.info b{
+.info b {
+    display: block;
 
-    display:block;
+    font-size: 9px;
 
-    font-size:10px;
+    letter-spacing: .2em;
 
-    letter-spacing:.2em;
+    margin-bottom: 4px;
 
-    margin-bottom:4px;
-
-    color:#7a99a4;
+    color: #7a969e;
 }
 
 
-/* ==================================================
+/* =========================================================
    行程
-================================================== */
+========================================================= */
 
-.timeline{
+.timeline {
+    max-width: 650px;
 
-    max-width:650px;
+    margin:
+        42px auto 0;
 
-    margin:42px auto 0;
-
-    text-align:left;
+    text-align: left;
 }
 
-.item{
-
-    display:grid;
+.item {
+    display: grid;
 
     grid-template-columns:
         75px 1fr;
 
-    gap:20px;
+    gap: 20px;
 
-    padding:24px 0;
+    padding:
+        24px 0;
 
     border-bottom:
         1px solid
-        rgba(67,111,126,.18);
+        rgba(65,106,116,.17);
 }
 
-.day{
-
+.day {
     font-family:
         "Noto Serif TC",
         serif;
 
-    font-size:26px;
+    font-size: 26px;
 
-    color:#527e8e;
+    color: #507d88;
 }
 
-.item strong{
+.item strong {
+    color: #365f6b;
 
-    color:#365f6e;
-
-    font-weight:500;
+    font-weight: 500;
 }
 
-.item p{
+.item p {
+    margin-top: 4px;
 
-    margin-top:4px;
-
-    font-size:15px;
+    font-size: 15px;
 }
 
 
-/* ==================================================
-   生日
-================================================== */
+/* =========================================================
+   BIRTHDAY
+========================================================= */
 
-.birthday{
-
+.birthday {
     background:
-
         radial-gradient(
             circle at 30% 25%,
-            rgba(255,255,255,.75),
+            rgba(255,255,255,.7),
             transparent 30%
         ),
-
         linear-gradient(
             145deg,
-            #dceff5,
-            #c9e3ed
+            rgba(189,220,226,.98),
+            rgba(217,237,240,.98)
         );
 }
 
-.heart{
+.heart {
+    font-size: 48px;
 
-    font-size:48px;
+    margin: 22px;
 
-    color:#5d8c9b;
-
-    margin:22px;
+    color: #5c8790;
 
     animation:
         heartBeat
@@ -810,74 +1347,73 @@ p{
         infinite;
 }
 
-@keyframes heartBeat{
+@keyframes heartBeat {
 
-    0%,
-    100%{
-        transform:scale(1);
+    0%,100% {
+        transform:
+            scale(1);
     }
 
-    15%{
-        transform:scale(1.16);
+    15% {
+        transform:
+            scale(1.16);
     }
 
-    30%{
-        transform:scale(1);
+    30% {
+        transform:
+            scale(1);
     }
 
-    45%{
-        transform:scale(1.08);
+    45% {
+        transform:
+            scale(1.08);
     }
-
 }
 
 
-/* ==================================================
-   小信入口
-================================================== */
+/* =========================================================
+   最後一封信
+========================================================= */
 
-.letter-section{
-
+.letter-section {
     background:
-
         radial-gradient(
-            circle at 30% 25%,
-            rgba(255,255,255,.8),
+            circle at 25% 20%,
+            rgba(255,255,255,.7),
             transparent 30%
         ),
-
         linear-gradient(
             145deg,
-            #dceff5,
-            #c9e3ed
+            rgba(185,216,222,.98),
+            rgba(210,234,238,.98)
         );
 }
 
-.letter-card{
+.letter-card {
+    max-width: 650px;
 
-    max-width:650px;
+    margin:
+        35px auto 0;
 
-    margin:35px auto 0;
+    padding:
+        42px 32px;
 
-    padding:42px 32px;
-
-    border-radius:28px;
+    border-radius: 28px;
 
     background:
-        rgba(255,255,255,.62);
+        rgba(255,255,255,.58);
 
     box-shadow:
         0 18px 55px
-        rgba(53,101,119,.13);
+        rgba(48,88,100,.14);
 
     border:
         1px solid
-        rgba(67,111,126,.18);
+        rgba(67,111,121,.16);
 }
 
-.envelope{
-
-    font-size:48px;
+.envelope {
+    font-size: 50px;
 
     animation:
         envelopeFloat
@@ -886,317 +1422,380 @@ p{
         infinite;
 }
 
-@keyframes envelopeFloat{
+@keyframes envelopeFloat {
 
-    0%,
-    100%{
-        transform:translateY(0);
+    0%,100% {
+        transform:
+            translateY(0);
     }
 
-    50%{
-        transform:translateY(-6px);
+    50% {
+        transform:
+            translateY(-7px);
+    }
+}
+
+#letterButton.unlocked {
+    background:
+        rgba(255,255,255,.8);
+
+    animation:
+        letterGlow
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes letterGlow {
+
+    0%,100% {
+        box-shadow:
+            0 0 0 0
+            rgba(91,145,155,.12);
     }
 
+    50% {
+        box-shadow:
+            0 0 0 10px
+            rgba(91,145,155,0);
+    }
 }
 
 
-/* ==================================================
-   小信彈窗
-================================================== */
+/* =========================================================
+   FINAL
+========================================================= */
 
-.letter-modal{
+.final {
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(122,166,171,.38),
+            transparent 28%
+        ),
+        linear-gradient(
+            145deg,
+            #376873,
+            #173d49
+        );
 
-    position:fixed;
+    color: #eef8f9;
+}
 
-    inset:0;
+.final h2 {
+    color: #eef8f9;
+}
 
-    z-index:900;
+.final p {
+    color: #d5e7ea;
+}
 
-    display:flex;
+.final .small {
+    color: #a8c3c8;
+}
 
-    align-items:center;
+.final .heart {
+    color: #d5eaec;
+}
 
-    justify-content:center;
 
-    padding:20px;
+/* =========================================================
+   信件視窗
+========================================================= */
+
+.letter-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
 
     background:
-        rgba(34,73,86,.42);
+        rgba(24,62,72,.5);
 
-    backdrop-filter:blur(7px);
+    backdrop-filter:
+        blur(8px);
 
-    opacity:0;
+    opacity: 0;
 
-    visibility:hidden;
+    visibility: hidden;
 
-    transition:.5s ease;
+    transition: .5s ease;
 }
 
-.letter-modal.open{
+.letter-modal.open {
+    opacity: 1;
 
-    opacity:1;
-
-    visibility:visible;
+    visibility: visible;
 }
 
-.letter-paper{
+.letter-paper {
+    width: min(650px, 100%);
 
-    width:min(650px,100%);
+    max-height: 85vh;
 
-    max-height:85vh;
+    overflow-y: auto;
 
-    overflow:auto;
+    padding:
+        45px 35px;
 
-    padding:45px 35px;
+    background:
+        #f9fcfd;
 
-    background:#f9fcfd;
-
-    border-radius:6px;
+    border-radius: 7px;
 
     box-shadow:
         0 30px 80px
-        rgba(28,65,78,.28);
+        rgba(20,55,66,.3);
 
     transform:
         translateY(35px)
         scale(.96);
 
-    transition:.6s ease;
+    transition: .6s ease;
 
-    text-align:left;
+    position: relative;
 
-    position:relative;
+    text-align: left;
 }
 
-.letter-modal.open .letter-paper{
-
-    transform:none;
+.letter-modal.open
+.letter-paper {
+    transform:
+        translateY(0)
+        scale(1);
 }
 
-.letter-paper::before{
+.letter-paper::before {
+    content: "☂";
 
-    content:"☂";
+    position: absolute;
 
-    position:absolute;
-
-    right:25px;
-
-    top:15px;
+    right: 25px;
+    top: 15px;
 
     color:
-        rgba(70,116,132,.12);
+        rgba(66,112,124,.12);
 
-    font-size:50px;
+    font-size: 50px;
 }
 
-.letter-paper h3{
+.letter-paper h3 {
+    color: #365f6b;
 
-    font-size:25px;
+    font-size: 25px;
 
-    font-weight:500;
-
-    color:#365f6e;
-
-    margin-bottom:25px;
+    margin-bottom: 25px;
 }
 
-.letter-paper p{
+.letter-paper p {
+    color: #526f7a;
 
     font-family:
         "Noto Serif TC",
         serif;
 
-    font-size:15px;
+    font-size: 15px;
 
-    line-height:2.25;
+    line-height: 2.25;
 
-    margin-bottom:18px;
-
-    color:#526f7a;
+    margin-bottom: 18px;
 }
 
-.signature{
+.signature {
+    text-align: right;
 
-    text-align:right;
+    margin-top: 35px;
 
-    margin-top:35px;
-
-    color:#648491;
+    color: #648491;
 }
 
-.close-letter{
+.close-letter {
+    display: block;
 
-    display:block;
+    margin:
+        25px auto 0;
 
-    margin:25px auto 0;
-
-    border:0;
+    border: 0;
 
     background:
-        rgba(205,229,238,.55);
+        rgba(199,225,232,.6);
 
-    color:#527987;
+    color: #527987;
 
-    padding:10px 24px;
+    padding:
+        10px 24px;
 
-    border-radius:999px;
+    border-radius: 999px;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    font:inherit;
+    font: inherit;
 }
 
 
-/* ==================================================
-   最後
-================================================== */
+/* =========================================================
+   MOBILE
+========================================================= */
 
-.final{
+@media (max-width: 600px) {
 
-    background:
-
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,.62),
-            transparent 38%
-        ),
-
-        linear-gradient(
-            145deg,
-            #c9e4ed,
-            #b9dce8
-        );
-}
-
-
-/* ==================================================
-   手機版
-================================================== */
-
-@media(max-width:600px){
-
-    section{
-
+    section {
         padding:
             75px 20px;
     }
 
-    h1{
-
-        font-size:43px;
+    h1 {
+        font-size: 43px;
     }
 
-    h2{
-
-        font-size:31px;
-
-        letter-spacing:.04em;
+    h2 {
+        font-size: 31px;
     }
 
-    p{
-
-        font-size:16px;
+    p {
+        font-size: 16px;
     }
 
-    .card{
+    .small {
+        font-size: 9px;
 
+        letter-spacing: .25em;
+    }
+
+    .card {
         padding:
             32px 22px;
     }
 
-    .info{
-
-        grid-template-columns:1fr;
+    .info {
+        grid-template-columns: 1fr;
     }
 
-    .photo-grid{
+    .photo-grid {
+        grid-template-columns: 1fr;
 
-        grid-template-columns:1fr;
-
-        gap:30px;
+        gap: 30px;
     }
 
-    .photo-card:nth-child(1){
-
+    .photo-card:nth-child(1) {
         transform:
             rotate(-1.5deg)
             translateY(45px);
     }
 
-    .photo-card:nth-child(2){
-
+    .photo-card:nth-child(2) {
         transform:
             rotate(1.5deg)
             translateY(45px);
     }
 
-    .photo-card.show{
-
+    .photo-card.show {
         transform:
             rotate(-1.5deg)
             translateY(0);
     }
 
-    .photo-card:nth-child(2).show{
-
+    .photo-card:nth-child(2).show {
         transform:
             rotate(1.5deg)
             translateY(0);
     }
 
-    .item{
-
+    .item {
         grid-template-columns:
             55px 1fr;
 
-        gap:14px;
+        gap: 14px;
     }
 
-    .letter-card{
-
+    .letter-card {
         padding:
             34px 22px;
     }
 
-    .letter-paper{
-
+    .letter-paper {
         padding:
             35px 24px;
 
-        max-height:88vh;
+        max-height: 88vh;
     }
 
-    .letter-paper p{
-
-        font-size:15px;
+    .letter-paper p {
+        font-size: 15px;
     }
 
-    .choice-buttons .btn{
+    .choice-buttons {
+        flex-direction: column;
+    }
 
-        width:100%;
+    .choice-buttons .btn {
+        width: 100%;
 
-        margin-left:0 !important;
+        margin-top: 8px;
+    }
+
+    .leaf {
+        width: 80px;
+        height: 30px;
+
+        opacity: .42;
+    }
+
+    .mist {
+        width: 120%;
+        height: 140px;
+    }
+
+    .countdown {
+        gap: 7px;
+    }
+
+    .time-box {
+        min-width:
+            calc(50% - 8px);
+
+        padding:
+            13px 8px;
+    }
+
+    .time-number {
+        font-size: 28px;
+    }
+
+    .opening h1 {
+        font-size: 40px;
     }
 }
 
 
-/* ==================================================
-   減少動畫裝置
-================================================== */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
-@media(prefers-reduced-motion:reduce){
+@media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
-    *::after{
+    *::after {
+        animation-duration:
+            .01ms !important;
 
-        animation-duration:.01ms !important;
+        animation-iteration-count:
+            1 !important;
 
-        animation-iteration-count:1 !important;
+        transition-duration:
+            .01ms !important;
 
-        transition-duration:.01ms !important;
-
-        scroll-behavior:auto !important;
+        scroll-behavior:
+            auto !important;
     }
 }
 
@@ -1207,16 +1806,174 @@ p{
 <body class="locked">
 
 
-<!-- ==================================================
-     開場
-================================================== -->
+<!-- =======================================================
+     9/5 倒數 / 預覽解鎖
+======================================================= -->
 
-<div class="opening" id="opening">
+<div
+    class="countdown-screen"
+    id="countdownScreen">
+
+    <div class="countdown-inner">
+
+        <div class="countdown-icon">
+            🌿
+        </div>
+
+        <div class="small">
+            OUR LITTLE ADVENTURE
+        </div>
+
+        <div class="countdown-title">
+            距離我們一起出發，還有……
+        </div>
+
+        <div class="countdown-subtitle">
+            宜蘭 · 09 / 05
+        </div>
+
+
+        <div
+            class="countdown"
+            id="countdown">
+
+            <div class="time-box">
+
+                <span
+                    class="time-number"
+                    id="days">
+                    00
+                </span>
+
+                <span class="time-label">
+                    DAYS
+                </span>
+
+            </div>
+
+            <div class="time-box">
+
+                <span
+                    class="time-number"
+                    id="hours">
+                    00
+                </span>
+
+                <span class="time-label">
+                    HOURS
+                </span>
+
+            </div>
+
+            <div class="time-box">
+
+                <span
+                    class="time-number"
+                    id="minutes">
+                    00
+                </span>
+
+                <span class="time-label">
+                    MINUTES
+                </span>
+
+            </div>
+
+            <div class="time-box">
+
+                <span
+                    class="time-number"
+                    id="seconds">
+                    00
+                </span>
+
+                <span class="time-label">
+                    SECONDS
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="unlock-message"
+            id="unlockMessage">
+
+            <div class="unlock-icon">
+                🔓
+            </div>
+
+            <h2>
+                解鎖。
+            </h2>
+
+            <p>
+                今天，我們出發。
+            </p>
+
+        </div>
+
+
+        <div class="preview-label">
+            PREVIEW MODE
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     雨林背景
+======================================================= -->
+
+<div class="forest-bg">
+
+    <div class="mountain"></div>
+
+    <div class="mountain two"></div>
+
+    <div class="mist one"></div>
+
+    <div class="mist two"></div>
+
+    <div class="mist three"></div>
+
+    <div class="leaves">
+
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     雨滴
+======================================================= -->
+
+<div
+    class="rain"
+    id="rain">
+</div>
+
+
+<!-- =======================================================
+     打開生日禮物
+======================================================= -->
+
+<div
+    class="opening"
+    id="opening">
 
     <div class="opening-inner">
 
         <div class="small">
-            A Little Birthday Surprise
+            A LITTLE BIRTHDAY SURPRISE
         </div>
 
         <div class="umbrella">
@@ -1224,11 +1981,11 @@ p{
         </div>
 
         <h1>
-            下點小雨，也沒關係
+            威翰，生日快樂。
         </h1>
 
         <p>
-            這次，我們一起出發。
+            這次，我想跟你一起走進雨裡。
         </p>
 
         <button
@@ -1244,22 +2001,16 @@ p{
 </div>
 
 
-<!-- ==================================================
-     雨
-================================================== -->
-
-<div
-    class="rain"
-    id="rain">
-</div>
-
+<!-- =======================================================
+     網站內容
+======================================================= -->
 
 <main>
 
 
-<!-- ==================================================
+<!-- =======================================================
      第一幕
-================================================== -->
+======================================================= -->
 
 <section class="hero">
 
@@ -1268,15 +2019,12 @@ p{
         <div class="reveal">
 
             <div class="small">
-                For My Favorite Person
+                FOR MY FAVORITE PERSON
             </div>
 
             <h1>
-
-                威翰 ♡ <br>
-
-                生日快樂 ♡
-
+                威翰，<br>
+                生日快樂。
             </h1>
 
         </div>
@@ -1287,20 +2035,15 @@ p{
             <div class="divider"></div>
 
             <p>
-
-                這一次，沒有準備很大的驚喜。<br>
-
-                只是想把一點點心意，慢慢寫給你。
-
+                這次我們去一個會下雨的地方。<br>
+                下點小雨，也沒關係。
             </p>
 
         </div>
 
 
         <div class="scroll reveal delay2">
-
             ↓ 慢慢往下看 ↓
-
         </div>
 
     </div>
@@ -1308,27 +2051,21 @@ p{
 </section>
 
 
-<!-- ==================================================
-     第二幕：三個月
-================================================== -->
+<!-- =======================================================
+     三個月
+======================================================= -->
 
 <section class="story">
 
     <div class="container">
 
         <div class="small reveal">
-
-            Our Little Story
-
+            OUR LITTLE STORY
         </div>
 
-
         <h2 class="reveal">
-
-            原來三個月，<br>
-
-            也足夠讓一個人慢慢走進生活裡
-
+            我們才剛開始，<br>
+            卻已經有好多值得記住的事。
         </h2>
 
 
@@ -1342,29 +2079,18 @@ p{
                 個月。
             </p>
 
-
             <div class="divider"></div>
 
-
             <p>
-
                 三個月說長不長，<br>
-
                 但我很喜歡這段時間裡，<br>
-
                 慢慢習慣生活裡有你的感覺。
-
             </p>
 
-
             <p>
-
                 有時候只是聊幾句話，<br>
-
                 有時候只是一起待著，<br>
-
                 對我來說，都很好。
-
             </p>
 
         </div>
@@ -1384,11 +2110,8 @@ p{
             id="secretText">
 
             <p>
-
                 其實我最想說的是：<br>
-
                 有你在，我就覺得日子變得溫柔了一點。
-
             </p>
 
         </div>
@@ -1398,75 +2121,56 @@ p{
 </section>
 
 
-<!-- ==================================================
-     第三幕：照片
-================================================== -->
+<!-- =======================================================
+     照片
+======================================================= -->
 
 <section class="photo-section">
 
     <div class="container">
 
         <div class="small reveal">
-
-            A Moment With You
-
+            A MOMENT WITH YOU
         </div>
 
-
         <h2 class="reveal">
-
-            我想把我們留下來。
-
+            我想把這些畫面留下來。
         </h2>
 
-
         <p class="reveal delay1">
-
-            有些照片想留下來不是因為風景多美，<br>
-
-            而是因為那一天是你站在我身旁
-
+            因為我喜歡照片裡的你，<br>
+            也喜歡那個和你一起的我。
         </p>
 
 
         <div class="photo-grid">
 
-
-            <!-- PHOTO 01 -->
-
-            <div
-                class="photo-card reveal delay1">
+            <div class="photo-card reveal delay1">
 
                 <img
                     src="./photo01.jpg"
-                    alt="我們的照片一">
+                    alt="我們的照片一"
+                    loading="lazy">
 
                 <div class="photo-caption">
-
-                    戀愛使人容光煥發
-
+                    這一刻，我想一直記得。
                 </div>
 
             </div>
 
 
-            <!-- PHOTO 03 -->
-
-            <div
-                class="photo-card reveal delay2">
+            <div class="photo-card reveal delay2">
 
                 <img
                     src="./photo03.jpg"
-                    alt="我們的照片二">
+                    alt="我們的照片二"
+                    loading="lazy">
 
                 <div class="photo-caption">
-
-                    同時也使人失去羞恥心
-
+                    以後還想一起留下更多。
                 </div>
 
             </div>
-
 
         </div>
 
@@ -1475,37 +2179,28 @@ p{
 </section>
 
 
-<!-- ==================================================
-     小互動
-================================================== -->
+<!-- =======================================================
+     雨天互動
+======================================================= -->
 
 <section class="story">
 
     <div class="container">
 
         <div class="small reveal">
-
-            Just A Little Thing
-
+            JUST A LITTLE THING
         </div>
 
-
         <h2 class="reveal">
-
             如果今天剛好下雨
-
         </h2>
 
-
         <p class="reveal delay1">
-
             你會選哪一個？
-
         </p>
 
 
         <div class="card reveal delay2">
-
 
             <div class="choice-buttons">
 
@@ -1544,18 +2239,16 @@ p{
 </section>
 
 
-<!-- ==================================================
+<!-- =======================================================
      宜蘭
-================================================== -->
+======================================================= -->
 
 <section class="destination">
 
     <div class="container">
 
         <div class="small reveal">
-
             DESTINATION REVEAL
-
         </div>
 
 
@@ -1563,35 +2256,27 @@ p{
             class="reveal"
             style="margin-top:10px;">
 
-            那麼這次我們去~
+            那麼，這次我們去哪裡？
 
         </p>
 
 
         <h1 class="reveal delay1">
-
             宜蘭
-
         </h1>
 
 
         <p class="reveal delay1">
-
             09 / 05 — 09 / 06
-
         </p>
 
 
         <div class="card reveal delay2">
 
             <p>
-
                 兩天一夜。<br>
-
                 不趕行程，<br>
-
                 也不用把每一分鐘都排滿。
-
             </p>
 
 
@@ -1599,16 +2284,20 @@ p{
 
                 <div>
 
-                    <b>STAY</b>
+                    <b>
+                        STAY
+                    </b>
 
-                    小雨天 VILLA
+                    小雨淋 VILLA
 
                 </div>
 
 
                 <div>
 
-                    <b>DINNER</b>
+                    <b>
+                        DINNER
+                    </b>
 
                     小雨淋私廚
 
@@ -1617,7 +2306,9 @@ p{
 
                 <div>
 
-                    <b>MOOD</b>
+                    <b>
+                        MOOD
+                    </b>
 
                     慢慢來
 
@@ -1631,6 +2322,7 @@ p{
         <a
             href="https://www.twins-villa.com/"
             target="_blank"
+            rel="noopener"
             class="btn reveal delay3">
 
             看看我們住的地方 ↗
@@ -1642,25 +2334,21 @@ p{
 </section>
 
 
-<!-- ==================================================
+<!-- =======================================================
      行程
-================================================== -->
+======================================================= -->
 
 <section class="story">
 
     <div class="container">
 
         <div class="small reveal">
-
-            Our Little Trip
-
+            OUR LITTLE TRIP
         </div>
 
 
         <h2 class="reveal">
-
             兩天一夜，慢慢來。
-
         </h2>
 
 
@@ -1771,6 +2459,7 @@ p{
 
             </div>
 
+
         </div>
 
     </div>
@@ -1778,132 +2467,151 @@ p{
 </section>
 
 
-<!-- ==================================================
+<!-- =======================================================
      生日
-================================================== -->
+======================================================= -->
 
 <section class="birthday">
 
     <div class="container">
 
         <div class="small reveal">
-
             09 · 08
-
         </div>
 
 
         <h2 class="reveal">
-
-            生日快樂，威翰。
-
+            你的生日。
         </h2>
 
 
+        <div class="heart reveal">
+            ♡
+        </div>
+
+
         <p class="reveal delay1">
-
-            我希望你知道，<br>
-
-            你真的已經做得很好了。
-
+            希望新的一歲，<br>
+            你依然可以做自己喜歡的事，<br>
+            也一直記得，你真的很棒。
         </p>
 
 
-        <div class="card reveal delay2">
-
-            <p>
-
-                不需要每一天都很厲害，<br>
-
-                也不用一直逼自己成為更好的人。
-
-            </p>
-
-
-            <p>
-
-                不開心，難過的時候<br>
-
-                也不用自己消化
-
-            </p>
-
-
-            <p>
-
-                我可能沒辦法幫你解決所有事情，<br>
-
-                但至少有些路，你不用在一個人走
-
-                因為妳現在有我了
-
-            </p>
-
-        </div>
-
-
-        <div class="heart reveal delay3">
-
-            ♡
-
-        </div>
+        <p class="reveal delay2">
+            而我也會努力，<br>
+            陪你走過更多晴天和雨天。
+        </p>
 
     </div>
 
 </section>
 
 
-<!-- ==================================================
-     小信入口
-================================================== -->
+<!-- =======================================================
+     最後
+======================================================= -->
+
+<section class="final">
+
+    <div class="container">
+
+        <div class="small reveal">
+            THE REAL GIFT
+        </div>
+
+
+        <h2 class="reveal">
+            其實我想送你的，<br>
+            從來都不是宜蘭。
+        </h2>
+
+
+        <p class="reveal">
+            也不是民宿，也不是一頓飯。
+        </p>
+
+
+        <div class="heart reveal">
+            ♡
+        </div>
+
+
+        <p class="reveal">
+            我想送你的，是我們的時間。
+        </p>
+
+
+        <p class="reveal">
+            是兩個人一起出發，<br>
+            一起吃飯、一起看風景、一起回家的時間。
+        </p>
+
+
+        <br>
+
+
+        <h2 class="reveal">
+            生日快樂，<br>
+            我最愛的你。
+        </h2>
+
+
+        <p class="reveal">
+            希望這趟旅行結束以後，<br>
+            我們還可以有很多很多個「一起出發吧」。
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     最後一封信
+======================================================= -->
 
 <section class="letter-section">
 
     <div class="container">
 
         <div class="small reveal">
-
-            One Last Thing
-
+            A LETTER FOR YOUR BIRTHDAY
         </div>
 
 
         <h2 class="reveal">
-
-            還有一封信，<br>
-
-            留給你~
-
+            有一封信，<br>
+            我想留到你的生日。
         </h2>
 
 
         <div class="letter-card reveal delay1">
 
-            <div class="envelope">
+            <div
+                class="envelope"
+                id="envelopeIcon">
 
-                ✉️
+                💌
 
             </div>
 
 
-            <p>
+            <p id="letterHint">
+                預覽模式：這封信現在可以打開。
+            </p>
 
-                這封信不用現在看<br>
 
-                真的不要看<br>
-
-                …………<br>
-
-                好啦，你都看到這裡了，打開啦 😂💌
-
+            <p id="countdownText">
+                正式版會等到 9 月 8 日才解鎖。
             </p>
 
 
             <button
-                class="btn"
-                onclick="openLetter()">
+                class="btn unlocked"
+                id="letterButton"
+                onclick="openBirthdayLetter()">
 
-                💌 打開小信
+                💌 預覽生日信
 
             </button>
 
@@ -1914,84 +2622,19 @@ p{
 </section>
 
 
-<!-- ==================================================
-     最後
-================================================== -->
-
-<section class="final">
-
-    <div class="container">
-
-        <div class="reveal">
-
-            <div class="small">
-
-                The Real Gift
-
-            </div>
-
-
-            <h2>
-
-                其實我想送你的，<br>
-
-                從來都不是宜蘭。
-
-            </h2>
-
-
-            <p>
-
-                是我的時間♡<br>
-
-                是一起吃飯、一起看風景、一起回家的時間。
-
-            </p>
-
-
-            <div class="heart">
-
-                ♡
-
-            </div>
-
-
-            <p>
-
-                希望以後還有很多很多個<br>
-
-                「一起出發吧」
-
-            </p>
-
-
-            <div
-                class="small"
-                style="margin-top:30px;">
-
-                2026.09.08 · TO 威翰
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
 </main>
 
 
-<!-- ==================================================
-     額外小信
-================================================== -->
+<!-- =======================================================
+     信件
+======================================================= -->
 
 <div
     class="letter-modal"
-    id="letterModal"
-    onclick="closeLetter(event)">
+    id="letterModal">
 
     <div class="letter-paper">
+
 
         <h3>
             給威翰：
@@ -1999,102 +2642,85 @@ p{
 
 
         <p>
-
-            如果你看到這裡，<br>
-
-            代表你真的把這份小小的禮物看完了。
-
+            生日快樂。
         </p>
 
 
         <p>
-
-            其實我想了很久，要送你什麼生日禮物。
-
-            後來覺得，比起買一個東西，
-
-            我更想把「我們的時間」送給你。
-
+            這封信，我故意留到今天才讓你看到。
         </p>
 
 
         <p>
-
-            我們才在一起三個月，
-
-            還有好多事情可以慢慢認識，
-
-            好多地方可以一起去，
-
-            好多照片可以一起留下。
-
+            我知道我們才在一起三個月，
+            但我真的很喜歡這三個月裡，
+            生活慢慢多了一個你的感覺。
         </p>
 
 
         <p>
+            謝謝你出現在我的生活裡。
+            謝謝你讓我有一個人可以想念，
+            也讓我開始期待很多很多
+            「我們一起」的事情。
+        </p>
 
-            我希望你知道，
 
-            你不用總是很勇敢，
+        <p>
+            我希望以後的我們，
+            不管遇到晴天、雨天，
+            或是偶爾有一點點不順利的日子，
+            都可以一起走。
+        </p>
 
+
+        <p>
+            如果下雨了也沒關係。
+            我會記得帶傘，
+            然後跟你一起走。
+        </p>
+
+
+        <p>
+            你不用一直都很厲害，
             也不用什麼事情都自己扛。
-
-            如果有一天你累了，
-
-            可以回頭看看，我還在。
-
         </p>
 
 
         <p>
-
-            我可能不是最會說漂亮話的人，
-
-            但我會用我的方式，
-
-            一點一點地讓你知道，
-
-            你是被我放在心上的。
-
+            在我這裡，
+            你就是很棒的你。
         </p>
 
 
         <p>
-
-            所以，生日快樂。
-
-            希望新的一歲，
-
-            你可以更自在地做自己，
-
-            也希望我還有機會陪你走很長很長的一段路。
-
+            希望你的新一歲，
+            有很多開心的事情，
+            也有很多值得期待的明天。
         </p>
 
 
         <p>
-
-            如果下雨了，也沒關係。<br>
-
-            我們一起撐傘就好了。
-
+            而我偷偷希望，
+            那些明天裡，
+            可以有很多很多個我。
         </p>
 
 
         <div class="signature">
 
-            愛你哦~♡<br>
+            生日快樂，威翰。<br>
 
-            Jodie
+            也謝謝你成為我的人。 ♡
 
         </div>
 
 
         <button
             class="close-letter"
-            onclick="closeLetter()">
+            onclick="closeBirthdayLetter()">
 
-            把信收起來
+            把信收好 ♡
 
         </button>
 
@@ -2105,97 +2731,436 @@ p{
 
 <script>
 
-/* ==================================================
-   開場
-================================================== */
+/* =========================================================
+   ⭐ 預覽模式
+========================================================= */
 
-function openGift(){
+/*
 
-    const opening =
-        document.getElementById("opening");
+    true：
 
-    opening.classList.add("hide");
+    現在就可以完整預覽網站。
+    不需要等待 9/5。
+    生日信也可以直接打開。
 
-    document.body.classList.remove("locked");
+    false：
+
+    正式模式。
+
+    9/5 00:00
+    → 網站解鎖
+
+    9/8 00:00
+    → 生日信解鎖
+
+*/
+
+const PREVIEW_MODE = true;
 
 
-    setTimeout(()=>{
+/* =========================================================
+   日期設定
+========================================================= */
+
+const TRIP_UNLOCK_DATE =
+    new Date(
+        2026,
+        8,
+        5,
+        0,
+        0,
+        0
+    );
+
+
+const BIRTHDAY_MONTH = 8;
+
+const BIRTHDAY_DAY = 8;
+
+
+/* =========================================================
+   開始
+========================================================= */
+
+function startWebsite() {
+
+    const countdownScreen =
+        document.getElementById(
+            "countdownScreen"
+        );
+
+
+    /* 預覽模式 */
+
+    if (PREVIEW_MODE) {
 
         document
-            .querySelectorAll(".hero .reveal")
-            .forEach(el=>{
+            .getElementById("countdown")
+            .style.display = "none";
 
-                el.classList.add("show");
 
-            });
+        document
+            .getElementById("unlockMessage")
+            .classList
+            .add("show");
 
-    },450);
 
+        setTimeout(function() {
+
+            countdownScreen
+                .classList
+                .add("hide");
+
+
+            document.body
+                .classList
+                .remove("locked");
+
+
+            showOpening();
+
+        }, 2200);
+
+
+        return;
+    }
+
+
+    /* 正式模式 */
+
+    updateTripCountdown();
+
+    setInterval(
+        updateTripCountdown,
+        1000
+    );
 }
 
 
-/* ==================================================
-   產生雨滴
-================================================== */
+/* =========================================================
+   9/5 倒數
+========================================================= */
 
-const rain =
-    document.getElementById("rain");
+let tripUnlocked = false;
 
-for(
-    let i=0;
-    i<45;
-    i++
-){
 
-    const drop =
-        document.createElement("div");
+function updateTripCountdown() {
 
-    drop.className="drop";
+    if (PREVIEW_MODE) {
+        return;
+    }
 
-    drop.style.left =
-        Math.random()*100+"%";
 
-    drop.style.height =
-        (35+Math.random()*55)+"px";
+    const now =
+        new Date();
 
-    drop.style.animationDuration =
-        (1.5+Math.random()*2.5)+"s";
 
-    drop.style.animationDelay =
-        (-Math.random()*4)+"s";
+    const distance =
+        TRIP_UNLOCK_DATE.getTime()
+        -
+        now.getTime();
 
-    drop.style.opacity =
-        (.18+Math.random()*.45);
 
-    rain.appendChild(drop);
+    const countdownScreen =
+        document.getElementById(
+            "countdownScreen"
+        );
+
+
+    const countdown =
+        document.getElementById(
+            "countdown"
+        );
+
+
+    const unlockMessage =
+        document.getElementById(
+            "unlockMessage"
+        );
+
+
+    if (distance <= 0) {
+
+        if (!tripUnlocked) {
+
+            tripUnlocked = true;
+
+
+            countdown.style.display =
+                "none";
+
+
+            unlockMessage
+                .classList
+                .add("show");
+
+
+            setTimeout(function() {
+
+                countdownScreen
+                    .classList
+                    .add("hide");
+
+
+                document.body
+                    .classList
+                    .remove("locked");
+
+
+                showOpening();
+
+            }, 2200);
+        }
+
+        return;
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                distance %
+                (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                distance %
+                (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                distance %
+                (1000 * 60)
+            ) /
+            1000
+        );
+
+
+    document
+        .getElementById("days")
+        .textContent =
+        String(days)
+        .padStart(2, "0");
+
+
+    document
+        .getElementById("hours")
+        .textContent =
+        String(hours)
+        .padStart(2, "0");
+
+
+    document
+        .getElementById("minutes")
+        .textContent =
+        String(minutes)
+        .padStart(2, "0");
+
+
+    document
+        .getElementById("seconds")
+        .textContent =
+        String(seconds)
+        .padStart(2, "0");
 }
 
 
-/* ==================================================
-   滑入動畫
-================================================== */
+/* =========================================================
+   開場
+========================================================= */
 
-const observer =
-    new IntersectionObserver(
+function showOpening() {
 
-        (entries)=>{
+    const opening =
+        document.getElementById(
+            "opening"
+        );
 
-            entries.forEach(entry=>{
 
-                if(entry.isIntersecting){
+    opening
+        .classList
+        .add("show");
 
-                    entry.target
+
+    document.body
+        .classList
+        .add("locked");
+}
+
+
+/* =========================================================
+   打開生日禮物
+========================================================= */
+
+function openGift() {
+
+    const opening =
+        document.getElementById(
+            "opening"
+        );
+
+
+    opening
+        .classList
+        .remove("show");
+
+
+    opening
+        .classList
+        .add("hide");
+
+
+    document.body
+        .classList
+        .remove("locked");
+
+
+    setTimeout(function() {
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(function(element) {
+
+                const rect =
+                    element
+                        .getBoundingClientRect();
+
+
+                if (
+                    rect.top <
+                    window.innerHeight
+                ) {
+
+                    element
                         .classList
                         .add("show");
-
                 }
 
             });
 
+    }, 400);
+}
+
+
+/* =========================================================
+   建立雨滴
+========================================================= */
+
+const rain =
+    document.getElementById(
+        "rain"
+    );
+
+
+for (
+    let i = 0;
+    i < 80;
+    i++
+) {
+
+    const drop =
+        document.createElement(
+            "div"
+        );
+
+
+    drop.classList.add(
+        "drop"
+    );
+
+
+    if (i < 25) {
+
+        drop.classList.add(
+            "far"
+        );
+
+    } else if (i < 55) {
+
+        drop.classList.add(
+            "mid"
+        );
+
+    } else {
+
+        drop.classList.add(
+            "near"
+        );
+    }
+
+
+    drop.style.left =
+        Math.random() * 100 + "%";
+
+
+    drop.style.height =
+        45 +
+        Math.random() * 65 +
+        "px";
+
+
+    drop.style.animationDuration =
+        .75 +
+        Math.random() * 1.2 +
+        "s";
+
+
+    drop.style.animationDelay =
+        Math.random() * 2 +
+        "s";
+
+
+    rain.appendChild(
+        drop
+    );
+}
+
+
+/* =========================================================
+   滑入動畫
+========================================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(
+                function(entry) {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add("show");
+                    }
+
+                }
+            );
+
         },
 
         {
-            threshold:.15
+            threshold: .15
         }
 
     );
@@ -2203,49 +3168,54 @@ const observer =
 
 document
     .querySelectorAll(".reveal")
-    .forEach(el=>{
+    .forEach(function(element) {
 
-        observer.observe(el);
+        revealObserver.observe(
+            element
+        );
 
     });
 
 
-/* ==================================================
-   偷偷一句話
-================================================== */
+/* =========================================================
+   偷偷點一下
+========================================================= */
 
-function showSecret(button){
+function showSecret(button) {
 
-    const text =
+    const secret =
         document.getElementById(
             "secretText"
         );
 
-    text.classList.toggle("open");
+
+    secret
+        .classList
+        .toggle("open");
 
 
-    if(
-        text.classList.contains("open")
-    ){
+    if (
+        secret.classList.contains(
+            "open"
+        )
+    ) {
 
         button.textContent =
-            "♡ 收起來";
+            "♡ 被你發現了";
 
-    }else{
+    } else {
 
         button.textContent =
             "偷偷點一下";
-
     }
-
 }
 
 
-/* ==================================================
-   雨天選擇
-================================================== */
+/* =========================================================
+   雨天互動
+========================================================= */
 
-function rainChoice(choice){
+function rainChoice(choice) {
 
     const result =
         document.getElementById(
@@ -2253,109 +3223,283 @@ function rainChoice(choice){
         );
 
 
-    if(choice==="A"){
+    if (choice === "A") {
 
         result.innerHTML =
-            "☂️ 一起撐傘。<br>" +
-            "你走慢一點，我就跟著你慢慢走。";
+            "☂️ 那就一起撐傘吧。<br>" +
+            "你走慢一點，我會跟著你。";
 
-    }else{
+    } else {
 
         result.innerHTML =
-            "🌧️ 那就一起淋一下雨。<br>" +
-            "反正有你在，好像也沒那麼糟。";
-
+            "🌧️ 那就一起淋雨吧。<br>" +
+            "反正有你在，下雨也沒關係。";
     }
-
-
-    result.animate(
-
-        [
-            {
-                opacity:0,
-                transform:"translateY(8px)"
-            },
-
-            {
-                opacity:1,
-                transform:"translateY(0)"
-            }
-
-        ],
-
-        {
-            duration:650,
-            easing:"ease-out"
-        }
-
-    );
-
 }
 
 
-/* ==================================================
-   打開小信
-================================================== */
+/* =========================================================
+   生日信日期
+========================================================= */
 
-function openLetter(){
+function getBirthdayUnlockDate() {
+
+    const now =
+        new Date();
+
+
+    return new Date(
+        now.getFullYear(),
+        BIRTHDAY_MONTH,
+        BIRTHDAY_DAY,
+        0,
+        0,
+        0
+    );
+}
+
+
+/* =========================================================
+   檢查生日信
+========================================================= */
+
+function checkBirthdayLetter() {
+
+    const button =
+        document.getElementById(
+            "letterButton"
+        );
+
+
+    const hint =
+        document.getElementById(
+            "letterHint"
+        );
+
+
+    const countdown =
+        document.getElementById(
+            "countdownText"
+        );
+
+
+    const envelope =
+        document.getElementById(
+            "envelopeIcon"
+        );
+
+
+    /* 預覽模式 */
+
+    if (PREVIEW_MODE) {
+
+        envelope.textContent =
+            "💌";
+
+
+        hint.innerHTML =
+            "預覽模式：這封信現在可以打開。";
+
+
+        countdown.innerHTML =
+            "正式版會等到 9 月 8 日才解鎖。";
+
+
+        button.innerHTML =
+            "💌 預覽生日信";
+
+
+        button
+            .classList
+            .add("unlocked");
+
+
+        return;
+    }
+
+
+    /* 正式模式 */
+
+    const now =
+        new Date();
+
+
+    const unlockDate =
+        getBirthdayUnlockDate();
+
+
+    if (now >= unlockDate) {
+
+        envelope.textContent =
+            "💌";
+
+
+        hint.innerHTML =
+            "今天可以打開了。";
+
+
+        countdown.innerHTML =
+            "9 月 8 日，生日快樂。";
+
+
+        button.innerHTML =
+            "💌 打開給威翰的信";
+
+
+        button
+            .classList
+            .add("unlocked");
+
+    } else {
+
+        envelope.textContent =
+            "🔒";
+
+
+        hint.innerHTML =
+            "這封信偷偷替你保管著。";
+
+
+        countdown.innerHTML =
+            "等到 9 月 8 日，<br>" +
+            "再回來打開它吧。";
+
+
+        button.innerHTML =
+            "🔒 9/8 才能打開";
+
+
+        button
+            .classList
+            .remove("unlocked");
+    }
+}
+
+
+/* =========================================================
+   打開生日信
+========================================================= */
+
+function openBirthdayLetter() {
+
+    /* 預覽模式 */
+
+    if (PREVIEW_MODE) {
+
+        document
+            .getElementById(
+                "letterModal"
+            )
+            .classList
+            .add("open");
+
+
+        document.body
+            .classList
+            .add("locked");
+
+
+        return;
+    }
+
+
+    /* 正式模式 */
+
+    const now =
+        new Date();
+
+
+    const unlockDate =
+        getBirthdayUnlockDate();
+
+
+    if (now < unlockDate) {
+
+        document
+            .getElementById(
+                "letterHint"
+            )
+            .innerHTML =
+            "欸～還沒到生日啦 ☂️";
+
+
+        document
+            .getElementById(
+                "countdownText"
+            )
+            .innerHTML =
+            "這封信正在偷偷躲著。<br>" +
+            "等 9 月 8 日再來找它吧。";
+
+
+        return;
+    }
+
 
     document
-        .getElementById("letterModal")
+        .getElementById(
+            "letterModal"
+        )
         .classList
         .add("open");
 
-    document.body.classList.add("locked");
 
+    document.body
+        .classList
+        .add("locked");
 }
 
 
-/* ==================================================
-   關閉小信
-================================================== */
+/* =========================================================
+   關閉生日信
+========================================================= */
 
-function closeLetter(event){
-
-    if(
-        event &&
-        event.target !== event.currentTarget
-    ){
-
-        return;
-
-    }
-
+function closeBirthdayLetter() {
 
     document
-        .getElementById("letterModal")
+        .getElementById(
+            "letterModal"
+        )
         .classList
         .remove("open");
 
-    document.body.classList.remove("locked");
 
+    document.body
+        .classList
+        .remove("locked");
 }
 
 
-/* ==================================================
-   ESC 關閉小信
-================================================== */
+/* =========================================================
+   點背景關閉信
+========================================================= */
 
-document.addEventListener(
-    "keydown",
-    (event)=>{
+document
+    .getElementById(
+        "letterModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
 
-        if(event.key==="Escape"){
+            if (
+                event.target === this
+            ) {
 
-            document
-                .getElementById("letterModal")
-                .classList
-                .remove("open");
-
-            document.body.classList.remove("locked");
+                closeBirthdayLetter();
+            }
 
         }
+    );
 
-    }
-);
+
+/* =========================================================
+   啟動
+========================================================= */
+
+checkBirthdayLetter();
+
+startWebsite();
 
 </script>
 
