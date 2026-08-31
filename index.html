@@ -1,1523 +1,828 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>給威翰的生日旅行 ☂️</title>
+  <title>下點小雨，也沒關係 ☂️</title>
 
-<style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    margin:0;
-    background:#10232C;
-    color:#F5F7F5;
-    font-family:"Zen Maru Gothic",sans-serif;
-    line-height:1.9;
-}
-
-section{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:90px 25px;
-    position:relative;
-    overflow:hidden;
-}
-
-.container{
-    width:min(900px,100%);
-    text-align:center;
-    position:relative;
-    z-index:2;
-}
-
-.serif{
-    font-family:"Noto Serif TC",serif;
-}
-
-.small{
-    font-size:12px;
-    letter-spacing:.3em;
-    opacity:.65;
-}
-
-h1,
-h2{
-    font-family:"Noto Serif TC",serif;
-    font-weight:500;
-}
-
-h1{
-    font-size:clamp(45px,9vw,90px);
-    line-height:1.3;
-}
-
-h2{
-    font-size:clamp(32px,6vw,58px);
-    line-height:1.4;
-}
-
-p{
-    font-size:18px;
-    color:#D9E4E7;
-}
-
-
-/* =========================
-   按鈕
-========================= */
-
-.btn{
-    display:inline-block;
-    margin-top:35px;
-    padding:13px 30px;
-    border:1px solid rgba(220,235,240,.45);
-    border-radius:999px;
-    color:#F5F7F5;
-    text-decoration:none;
-    transition:.4s;
-    cursor:pointer;
-    background:rgba(255,255,255,.03);
-    font-family:inherit;
-}
-
-.btn:hover{
-    background:rgba(170,205,215,.15);
-    border-color:rgba(220,235,240,.7);
-    transform:translateY(-3px);
-}
-
-
-/* =========================
-   第一幕
-========================= */
-
-.hero{
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(95,130,145,.35),
-            transparent 60%
-        ),
-        linear-gradient(
-            rgba(16,35,44,.72),
-            rgba(10,25,32,.97)
-        );
-}
-
-
-/* =========================
-   雨滴
-========================= */
-
-.rain{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-}
-
-.drop{
-    position:absolute;
-    top:-100px;
-    width:1px;
-    height:75px;
-    background:linear-gradient(
-        transparent,
-        rgba(220,235,240,.5)
-    );
-    animation:rain linear infinite;
-}
-
-@keyframes rain{
-
-    from{
-        transform:translateY(-120px) translateX(0);
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    to{
-        transform:translateY(115vh) translateX(-40px);
+    html {
+      scroll-behavior: smooth;
     }
 
-}
-
-
-/* =========================
-   第二幕
-========================= */
-
-.story{
-    background:
-        linear-gradient(
-            145deg,
-            #203B47,
-            #294858
-        );
-}
-
-
-/* =========================
-   宜蘭揭曉
-========================= */
-
-.destination{
-    background:
-        linear-gradient(
-            145deg,
-            #E5EEF1,
-            #D5E4E8
-        );
-    color:#233B45;
-}
-
-.destination p{
-    color:#536D76;
-}
-
-.destination h1,
-.destination h2{
-    color:#233B45;
-}
-
-
-/* =========================
-   卡片
-========================= */
-
-.card{
-    background:rgba(255,255,255,.58);
-    border:1px solid rgba(255,255,255,.65);
-    border-radius:30px;
-    padding:35px;
-    margin:30px auto;
-    max-width:700px;
-    box-shadow:
-        0 15px 40px rgba(28,60,72,.12);
-}
-
-.info{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:25px;
-}
-
-.info div{
-    padding:15px;
-    border-radius:18px;
-    background:rgba(255,255,255,.52);
-}
-
-.info b{
-    display:block;
-    font-size:11px;
-    letter-spacing:.2em;
-    margin-bottom:5px;
-}
-
-
-/* =========================
-   照片
-========================= */
-
-.photo{
-    width:min(750px,100%);
-    aspect-ratio:16/10;
-    margin:35px auto;
-    border-radius:25px;
-    overflow:hidden;
-    background:
-        linear-gradient(
-            135deg,
-            #486A77,
-            #263F4A
-        );
-    position:relative;
-    cursor:pointer;
-    box-shadow:
-        0 15px 35px rgba(10,30,38,.2);
-}
-
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    transition:.6s;
-}
-
-.photo:hover img{
-    transform:scale(1.04);
-}
-
-.photo-placeholder{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    color:rgba(245,247,245,.65);
-    background:
-        linear-gradient(
-            135deg,
-            rgba(72,106,119,.95),
-            rgba(38,63,74,.95)
-        );
-}
-
-.photo-placeholder span{
-    font-size:35px;
-    margin-bottom:10px;
-}
-
-.photo-placeholder small{
-    letter-spacing:.15em;
-}
-
-
-/* =========================
-   圖片放大
-========================= */
-
-.lightbox{
-    position:fixed;
-    inset:0;
-    background:rgba(8,22,29,.92);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
-    padding:20px;
-}
-
-.lightbox.show{
-    display:flex;
-}
-
-.lightbox img{
-    max-width:95%;
-    max-height:90vh;
-    border-radius:15px;
-    object-fit:contain;
-}
-
-.close-lightbox{
-    position:absolute;
-    top:20px;
-    right:25px;
-    font-size:35px;
-    color:#F5F7F5;
-    cursor:pointer;
-}
-
-
-/* =========================
-   我們的晚上
-========================= */
-
-.stay{
-    background:
-        radial-gradient(
-            circle at top,
-            #345867,
-            #172F3A 65%
-        );
-}
-
-
-/* =========================
-   行程
-========================= */
-
-.timeline{
-    max-width:650px;
-    margin:40px auto;
-    text-align:left;
-}
-
-.item{
-    display:grid;
-    grid-template-columns:80px 1fr;
-    gap:20px;
-    padding:25px 0;
-    border-bottom:1px solid rgba(220,235,240,.18);
-}
-
-.day{
-    font-family:"Noto Serif TC";
-    font-size:25px;
-    color:#BFD5DC;
-}
-
-.item strong{
-    font-size:18px;
-    color:#F5F7F5;
-}
-
-
-/* =========================
-   倒數
-========================= */
-
-.countdown{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin:40px 0;
-}
-
-.count-box{
-    min-width:85px;
-    padding:15px 10px;
-    border:1px solid rgba(220,235,240,.22);
-    border-radius:20px;
-    background:rgba(255,255,255,.05);
-    backdrop-filter:blur(6px);
-}
-
-.count-number{
-    font-family:"Noto Serif TC",serif;
-    font-size:30px;
-    color:#E3EEF1;
-}
-
-.count-label{
-    font-size:11px;
-    opacity:.55;
-    letter-spacing:.15em;
-}
-
-
-/* =========================
-   最後一幕
-========================= */
-
-.final{
-    background:
-        radial-gradient(
-            circle at center,
-            #496C78,
-            #142A34 65%
-        );
-}
-
-.heart{
-    font-size:55px;
-    margin:25px;
-    color:#DCECF0;
-    animation:heartbeat 2s infinite;
-}
-
-@keyframes heartbeat{
-
-    0%,100%{
-        transform:scale(1);
+    body {
+      background: #eaf4f8;
+      color: #294957;
+      font-family: "Noto Serif TC", serif;
+      line-height: 1.9;
+      overflow-x: hidden;
     }
 
-    50%{
-        transform:scale(1.12);
+    /* ===== 背景小雨 ===== */
+
+    .rain {
+      position: fixed;
+      top: -100px;
+      width: 1px;
+      height: 80px;
+      background: rgba(104, 157, 177, 0.18);
+      animation: rainFall linear infinite;
+      z-index: -1;
     }
 
-}
+    @keyframes rainFall {
+      0% {
+        transform: translateY(-100px);
+      }
 
-
-/* =========================
-   生日彩蛋
-========================= */
-
-.secret{
-    max-height:0;
-    opacity:0;
-    overflow:hidden;
-    transition:
-        max-height 1.5s ease,
-        opacity 1s ease;
-}
-
-.secret.open{
-    max-height:1200px;
-    opacity:1;
-}
-
-.secret-message{
-    margin:35px auto;
-    padding:35px;
-    max-width:680px;
-    border-top:1px solid rgba(220,235,240,.22);
-    border-bottom:1px solid rgba(220,235,240,.22);
-}
-
-.secret-message p{
-    line-height:2.2;
-    color:#DDE9EC;
-}
-
-
-/* =========================
-   滑入動畫
-========================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(35px);
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
-
-.reveal.show{
-    opacity:1;
-    transform:none;
-}
-
-
-/* =========================
-   手機
-========================= */
-
-@media(max-width:600px){
-
-    section{
-        padding:70px 20px;
+      100% {
+        transform: translateY(110vh);
+      }
     }
 
-    .info{
-        grid-template-columns:1fr;
+    /* ===== 導覽 ===== */
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(234, 244, 248, 0.82);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      z-index: 100;
+      border-bottom: 1px solid rgba(95, 145, 163, 0.12);
     }
 
-    .item{
-        grid-template-columns:55px 1fr;
-        gap:12px;
+    .nav a {
+      color: #507787;
+      text-decoration: none;
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-size: 13px;
+      margin: 0 12px;
+      transition: 0.3s;
     }
 
-    p{
-        font-size:16px;
+    .nav a:hover {
+      color: #315e70;
     }
 
-    .countdown{
-        gap:7px;
+    /* ===== 每個區塊 ===== */
+
+    section {
+      min-height: 100vh;
+      padding: 110px 25px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    .count-box{
-        min-width:65px;
-        padding:12px 5px;
+    .content {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
     }
 
-    .count-number{
-        font-size:23px;
+    /* ===== 第一幕 ===== */
+
+    .hero {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.75), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(177,214,226,0.35), transparent 35%);
     }
 
-    .count-label{
-        font-size:9px;
+    .umbrella {
+      font-size: 65px;
+      margin-bottom: 25px;
+      animation: float 4s ease-in-out infinite;
     }
 
-}
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
 
-</style>
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 8vw, 65px);
+      font-weight: 500;
+      letter-spacing: 8px;
+      color: #315d6d;
+      margin-bottom: 20px;
+    }
+
+    .hero .subtitle {
+      font-family: "Zen Maru Gothic", sans-serif;
+      color: #6c8d99;
+      font-size: 16px;
+      letter-spacing: 3px;
+    }
+
+    .scroll {
+      margin-top: 55px;
+      color: #86a9b6;
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      animation: breathe 2.5s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* ===== 標題 ===== */
+
+    .section-label {
+      color: #7da2b1;
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 6vw, 43px);
+      font-weight: 500;
+      color: #315d6d;
+      margin-bottom: 30px;
+      letter-spacing: 4px;
+    }
+
+    .text {
+      max-width: 680px;
+      margin: auto;
+      font-size: 16px;
+      color: #526f7a;
+      line-height: 2.2;
+    }
+
+    /* ===== 關於我們 ===== */
+
+    .memory {
+      background: #f4f9fb;
+    }
+
+    .memory-box {
+      padding: 40px 25px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 25px;
+      box-shadow: 0 15px 45px rgba(69, 112, 128, 0.08);
+    }
+
+    .memory-number {
+      font-size: 58px;
+      color: #5d8b9d;
+      font-family: "Zen Maru Gothic", sans-serif;
+      margin-bottom: 5px;
+    }
+
+    .memory-title {
+      font-size: 20px;
+      color: #416d7c;
+      margin-bottom: 20px;
+    }
+
+    /* ===== 照片區 ===== */
+
+    .photos {
+      background: #eaf4f8;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 45px;
+    }
+
+    .photo-card {
+      background: white;
+      padding: 10px 10px 18px;
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(59, 100, 116, 0.12);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .photo-card:nth-child(1) {
+      transform: rotate(-2deg);
+    }
+
+    .photo-card:nth-child(2) {
+      transform: rotate(1.5deg);
+    }
+
+    .photo-card:nth-child(3) {
+      transform: rotate(-1deg);
+    }
+
+    .photo-card:hover {
+      transform: translateY(-8px) rotate(0deg);
+      box-shadow: 0 20px 40px rgba(59, 100, 116, 0.18);
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      border-radius: 5px;
+    }
+
+    .photo-caption {
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-size: 13px;
+      color: #73909a;
+      margin-top: 12px;
+    }
+
+    /* ===== 宜蘭 ===== */
+
+    .trip {
+      background: #dcecf2;
+    }
+
+    .trip-date {
+      font-family: "Zen Maru Gothic", sans-serif;
+      color: #668c9b;
+      font-size: 17px;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+    }
+
+    .trip-card {
+      max-width: 700px;
+      margin: 35px auto 0;
+      background: rgba(255,255,255,0.72);
+      padding: 35px 30px;
+      border-radius: 25px;
+    }
+
+    .trip-card p {
+      color: #52707b;
+      margin: 10px 0;
+    }
+
+    .trip-highlight {
+      font-size: 20px;
+      color: #3d6978;
+      margin-bottom: 15px;
+    }
+
+    /* ===== 給威翰的話 ===== */
+
+    .letter {
+      background: #f5fafb;
+    }
+
+    .letter-paper {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(255,255,255,0.85);
+      padding: 50px 40px;
+      border-radius: 5px;
+      box-shadow: 0 15px 45px rgba(62, 106, 120, 0.09);
+      text-align: left;
+      position: relative;
+    }
+
+    .letter-paper::before {
+      content: "☂";
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      color: rgba(91, 139, 155, 0.15);
+      font-size: 55px;
+    }
+
+    .letter-paper h3 {
+      font-size: 24px;
+      font-weight: 500;
+      color: #355f6e;
+      margin-bottom: 25px;
+    }
+
+    .letter-paper p {
+      color: #566f78;
+      font-size: 15px;
+      line-height: 2.3;
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      text-align: right;
+      margin-top: 35px;
+      color: #527d8b;
+      font-family: "Zen Maru Gothic", sans-serif;
+    }
+
+    /* ===== 生日 ===== */
+
+    .birthday {
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), transparent 30%),
+        linear-gradient(135deg, #d9edf3, #eef7fa);
+    }
+
+    .birthday-date {
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-size: 18px;
+      letter-spacing: 5px;
+      color: #638c9b;
+      margin-bottom: 25px;
+    }
+
+    .birthday h2 {
+      font-size: clamp(35px, 8vw, 58px);
+    }
+
+    .birthday-message {
+      font-size: 18px;
+      color: #4f707c;
+      line-height: 2.2;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .heart {
+      font-size: 35px;
+      margin-top: 30px;
+      animation: heartbeat 1.8s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    /* ===== 最後 ===== */
+
+    .ending {
+      min-height: 75vh;
+      background: #cfe5ed;
+    }
+
+    .ending h2 {
+      margin-bottom: 25px;
+    }
+
+    .ending p {
+      color: #587681;
+      font-size: 16px;
+      line-height: 2.3;
+    }
+
+    .ending .small {
+      margin-top: 35px;
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-size: 13px;
+      color: #7897a1;
+      letter-spacing: 2px;
+    }
+
+    /* ===== 手機版 ===== */
+
+    @media (max-width: 700px) {
+
+      .nav {
+        padding: 12px 8px;
+      }
+
+      .nav a {
+        font-size: 11px;
+        margin: 0 5px;
+      }
+
+      section {
+        padding: 100px 20px 70px;
+      }
+
+      .hero h1 {
+        letter-spacing: 4px;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .photo-card:nth-child(1),
+      .photo-card:nth-child(2),
+      .photo-card:nth-child(3) {
+        transform: rotate(0deg);
+      }
+
+      .letter-paper {
+        padding: 35px 25px;
+      }
+
+      .text {
+        font-size: 15px;
+      }
+
+      .trip-card {
+        padding: 30px 22px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <!-- 背景雨滴 -->
+  <div class="rain" style="left:5%; animation-duration:7s;"></div>
+  <div class="rain" style="left:12%; animation-duration:9s; animation-delay:2s;"></div>
+  <div class="rain" style="left:21%; animation-duration:8s; animation-delay:1s;"></div>
+  <div class="rain" style="left:31%; animation-duration:10s; animation-delay:3s;"></div>
+  <div class="rain" style="left:43%; animation-duration:7s; animation-delay:1s;"></div>
+  <div class="rain" style="left:55%; animation-duration:9s; animation-delay:4s;"></div>
+  <div class="rain" style="left:66%; animation-duration:8s; animation-delay:2s;"></div>
+  <div class="rain" style="left:77%; animation-duration:10s;"></div>
+  <div class="rain" style="left:88%; animation-duration:7s; animation-delay:3s;"></div>
+  <div class="rain" style="left:96%; animation-duration:9s;"></div>
 
-<!-- =========================
-     圖片放大
-========================= -->
 
-<div
-    class="lightbox"
-    id="lightbox">
+  <!-- 導覽列 -->
 
-    <div
-        class="close-lightbox"
-        id="closeLightbox">
-        ×
+  <nav class="nav">
+    <a href="#home">開始</a>
+    <a href="#memory">我們</a>
+    <a href="#photos">照片</a>
+    <a href="#trip">宜蘭</a>
+    <a href="#letter">想對你說</a>
+    <a href="#birthday">生日</a>
+  </nav>
+
+
+  <!-- 第一幕 -->
+
+  <section class="hero" id="home">
+
+    <div class="content">
+
+      <div class="umbrella">☂️</div>
+
+      <h1>下點小雨，也沒關係</h1>
+
+      <p class="subtitle">
+        因為我想和你一起走
+      </p>
+
+      <div class="scroll">
+        ↓ 慢慢往下看 ↓
+      </div>
+
     </div>
 
-    <img
-        id="lightboxImg"
-        src=""
-        alt="放大的照片">
+  </section>
 
-</div>
 
+  <!-- 我們 -->
 
-<!-- =========================
-     第一幕
-========================= -->
+  <section class="memory" id="memory">
 
-<section class="hero">
+    <div class="content">
 
-<div class="rain" id="rain"></div>
+      <div class="section-label">
+        OUR LITTLE STORY
+      </div>
 
-<div class="container">
+      <h2>我們的故事，才剛開始</h2>
 
-<div class="small reveal">
-A BIRTHDAY TRIP FOR YOU
-</div>
+      <div class="memory-box">
 
-<h1 class="reveal">
-下點小雨，<br>
-也沒關係。
-</h1>
+        <div class="memory-number">
+          3
+        </div>
 
-<p class="reveal">
-因為只要是和你一起，<br>
-去哪裡都很好。
-</p>
+        <div class="memory-title">
+          個月
+        </div>
 
-<p class="reveal">
-Dear 這是我想送你的生日禮物
-</p>
+        <p class="text">
+          說長不長，說短也不短。<br>
+          三個月的時間裡，我慢慢習慣了生活裡有你。
+          <br><br>
+          習慣有一個人可以分享今天發生的小事，
+          習慣想起什麼的時候第一個想到你，
+          也習慣在開心或不開心的時候，
+          都想跟你說一聲。
+        </p>
 
-<a
-    href="#story"
-    class="btn reveal">
+      </div>
 
-☂ 打開，這小小驚喜
+    </div>
 
-</a>
+  </section>
 
-</div>
 
-</section>
+  <!-- 三張照片 -->
 
+  <section class="photos" id="photos">
 
+    <div class="content">
 
-<!-- =========================
-     第二幕｜三個月
-========================= -->
+      <div class="section-label">
+        ABOUT US
+      </div>
 
-<section id="story" class="story">
+      <h2>一些我想留下來的畫面</h2>
 
-<div class="container">
+      <p class="text">
+        有些照片其實沒有什麼特別的故事，
+        但因為照片裡的人是你，
+        所以我想好好收藏。
+      </p>
 
-<div class="small reveal">
-OUR FIRST THREE MONTHS
-</div>
 
-<h2 class="reveal">
-三個月，<br>
-好像不算很久。
-</h2>
+      <div class="photo-grid">
 
-<p class="reveal">
-但這三個月裡，<br>
-我很開心我的生活裡，多了一個你。
-</p>
+        <!-- 照片 01 -->
+        <div class="photo-card">
 
-<p class="reveal">
-多了一個可以分享日常的人，<br>
-多了一個讓我期待見面的人，<br>
-也多了一個我想好好珍惜的人。
-</p>
+          <img
+            src="photo01.jpg"
+            alt="我們的照片 01"
+            loading="lazy"
+          >
 
-<p class="reveal">
-我不知道未來會有多少個三個月，<br>
-但我很確定的是——
-</p>
+          <div class="photo-caption">
+            01 · 和你一起的日常
+          </div>
 
-<h2 class="reveal">
-現在的我，<br>
-很喜歡和你一起走。
-</h2>
+        </div>
 
 
-<div class="photo reveal">
+        <!-- 照片 02 -->
+        <div class="photo-card">
 
-<img
-    src="images/photo01.jpg"
-    alt="我們的照片"
-    onerror="this.style.display='none'"
-    onclick="openPhoto(this)">
+          <img
+            src="photo02.jpg"
+            alt="我們的照片 02"
+            loading="lazy"
+          >
 
-<div class="photo-placeholder">
+          <div class="photo-caption">
+            02 · 我喜歡我們的樣子
+          </div>
 
-<span>♡</span>
+        </div>
 
-<small>
-照片之後放進來
-</small>
 
-</div>
+        <!-- 照片 03 -->
+        <div class="photo-card">
 
-</div>
+          <img
+            src="photo03.jpg"
+            alt="我們的照片 03"
+            loading="lazy"
+          >
 
-<p class="reveal">
-謝謝你，讓我的日常多了一點不一樣。
-</p>
+          <div class="photo-caption">
+            03 · 還有很多以後
+          </div>
 
-</div>
+        </div>
 
-</section>
+      </div>
 
+    </div>
 
+  </section>
 
-<!-- =========================
-     第三幕｜宜蘭揭曉
-========================= -->
 
-<section class="destination">
+  <!-- 宜蘭 -->
 
-<div class="container">
+  <section class="trip" id="trip">
 
-<div class="small reveal">
-DESTINATION REVEAL
-</div>
+    <div class="content">
 
-<h2 class="reveal">
-那麼，這次我們去哪裡？
-</h2>
+      <div class="section-label">
+        OUR LITTLE TRIP
+      </div>
 
-<p class="reveal">
-不是很遠的地方。<br>
-只是想找一個地方，<br>
-讓我們暫時離開每天忙忙碌碌的生活。
-</p>
+      <h2>那就一起去宜蘭吧</h2>
 
+      <div class="trip-date">
+        09 / 05 — 09 / 06
+      </div>
 
-<div class="card reveal">
+      <div class="trip-card">
 
-<h1>
-宜蘭
-</h1>
+        <div class="trip-highlight">
+          如果下雨了，也沒關係。
+        </div>
 
-<p>
-9.05 — 9.06
-</p>
+        <p>
+          因為這趟旅程，我最期待的，
+          從來都不是天氣。
+        </p>
 
-<p>
-2 DAYS · 1 NIGHT
-</p>
+        <p>
+          是和你一起離開熟悉的日常，
+          去一個新的地方，
+          慢慢吃飯、慢慢走路，
+          然後把時間留給彼此。
+        </p>
 
+        <p>
+          這次想帶你去宜蘭，
+          住進一個舒服的地方，
+          吃一頓好好的晚餐。
+        </p>
 
-<div class="info">
+        <p>
+          只希望那兩天，
+          你可以什麼都不用想，
+          好好休息，也好好被我陪著。
+        </p>
 
-<div>
-<b>STAY</b>
-小雨天 VILLA
-</div>
+      </div>
 
-<div>
-<b>DINNER</b>
-小雨淋私廚
-</div>
+    </div>
 
-<div>
-<b>MOOD</b>
-慢慢來，就很好。
-</div>
+  </section>
 
-</div>
 
-</div>
+  <!-- 給威翰的話 -->
 
-</div>
+  <section class="letter" id="letter">
 
-</section>
+    <div class="content">
 
+      <div class="section-label">
+        A LETTER FOR YOU
+      </div>
 
+      <div class="letter-paper">
 
-<!-- =========================
-     第四幕｜我們的晚上
-========================= -->
+        <h3>給威翰：</h3>
 
-<section class="stay">
+        <p>
+          我其實不太會把很多很肉麻的話說出口，
+          所以想用這個小小的網站，
+          把一些平常沒有說完的話寫給你。
+        </p>
 
-<div class="container">
+        <p>
+          謝謝你出現在我的生活裡。
+          謝謝你讓我知道，
+          原來喜歡一個人，
+          可以是很自然、很舒服的一件事。
+        </p>
 
-<div class="small reveal">
-A LITTLE ESCAPE
-</div>
+        <p>
+          我不知道未來會有多少晴天，
+          也不知道偶爾會遇到多少雨天。
+          但我想讓你知道，
+          如果有一天你覺得累了，
+          或者覺得事情好像沒有想像中順利，
+          你不用一個人撐著。
+        </p>
 
-<h2 class="reveal">
-這兩天，慢慢來就好。
-</h2>
+        <p>
+          我不一定每一次都有最好的答案，
+          但我願意陪你一起想。
+          不一定能幫你把所有問題解決，
+          但我可以陪你走一段。
+        </p>
 
-<p class="reveal">
-威翰，<br>
-我想和你一起去一個安靜的地方。
-</p>
+        <p>
+          因為我希望你知道，
+          你真的已經做得很好了。
+          在我眼裡，
+          你一直都是很棒很棒的人。
+        </p>
 
-<p class="reveal">
-有山、有樹，<br>
-還有一個只屬於我們的晚上。
-</p>
+        <p>
+          所以不用急著成為誰眼中的完美。
+          做你自己就好了。
+          剩下的，我們一起慢慢來。
+        </p>
 
+        <div class="signature">
+          愛你的<br>
+          我 ☂️
+        </div>
 
-<div class="photo reveal">
+      </div>
 
-<img
-    src="images/photo02.jpg"
-    alt="小雨天 VILLA"
-    onerror="this.style.display='none'"
-    onclick="openPhoto(this)">
+    </div>
 
-<div class="photo-placeholder">
+  </section>
 
-<span>☂</span>
 
-<small>
-住宿照片之後放進來
-</small>
+  <!-- 生日 -->
 
-</div>
+  <section class="birthday" id="birthday">
 
-</div>
+    <div class="content">
 
+      <div class="section-label">
+        HAPPY BIRTHDAY
+      </div>
 
-<p class="reveal">
-住進小雨天 VILLA，<br>
-再一起吃一頓小雨淋私廚。
-</p>
+      <div class="birthday-date">
+        09 · 08
+      </div>
 
-<p class="reveal">
-不用特別安排什麼，<br>
-<strong>只要我們在一起，就很好。</strong>
-</p>
+      <h2>
+        威翰，生日快樂。
+      </h2>
 
+      <p class="birthday-message">
 
-<p class="small reveal">
-9.05 — 9.06｜宜蘭
-</p>
+        希望新的一歲，
+        你依然可以做喜歡的事情，
+        去想去的地方，
+        成為自己喜歡的樣子。
 
-<a
-    href="https://www.twins-villa.com/"
-    target="_blank"
-    rel="noopener"
-    class="btn reveal">
+        <br><br>
 
-看看我們要住的地方 ↗
+        希望你每天都有一點點值得期待的事情，
+        有好好吃飯，
+        有好好睡覺，
+        有被愛，也有感受到自己值得被愛。
 
-</a>
+        <br><br>
 
-</div>
+        而我很幸運，
+        可以成為陪你走這段路的人。
 
-</section>
+      </p>
 
+      <div class="heart">
+        ♡
+      </div>
 
+    </div>
 
-<!-- =========================
-     第五幕｜兩天一夜
-========================= -->
+  </section>
 
-<section class="story">
 
-<div class="container">
+  <!-- 最後 -->
 
-<div class="small reveal">
-OUR LITTLE TRIP
-</div>
+  <section class="ending">
 
-<h2 class="reveal">
-這次，行程不用太滿。
-</h2>
+    <div class="content">
 
+      <div class="umbrella">
+        ☂️
+      </div>
 
-<div class="timeline">
+      <h2>
+        以後的雨天，也一起走吧。
+      </h2>
 
-<div class="item reveal">
+      <p>
+        不需要每一天都是晴天。<br>
+        偶爾下點雨，也沒關係。
+        <br><br>
+        因為只要身邊是你，
+        我就覺得很好。
+      </p>
 
-<div class="day">
-01
-</div>
+      <div class="small">
+        To 威翰 · From 我
+        <br>
+        2026.09.08
+      </div>
 
-<div>
-<strong>出發</strong><br>
-一起去宜蘭。<br>
-看看沿途的風景，聊聊天。<br>
-慢慢出發就好。
-</div>
+    </div>
 
-</div>
+  </section>
 
-
-<div class="item reveal">
-
-<div class="day">
-01
-</div>
-
-<div>
-<strong>入住</strong><br>
-把行李放下，<br>
-也把最近累積的疲憊放下。
-</div>
-
-</div>
-
-
-<div class="item reveal">
-
-<div class="day">
-01
-</div>
-
-<div>
-<strong>生日旅行</strong><br>
-吃一頓我偷偷期待很久的晚餐。<br>
-然後把這個晚上，留給我們兩個。
-</div>
-
-</div>
-
-
-<div class="item reveal">
-
-<div class="day">
-02
-</div>
-
-<div>
-<strong>睡到自然醒</strong><br>
-沒有鬧鐘催我們。<br>
-睡到自然醒，慢慢吃早餐，再一起走走。
-</div>
-
-</div>
-
-
-<div class="item reveal">
-
-<div class="day">
-02
-</div>
-
-<div>
-<strong>回家</strong><br>
-帶著兩天的小小回憶回家。<br>
-然後繼續我們的日常。
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     第六幕｜倒數
-========================= -->
-
-<section class="story">
-
-<div class="container">
-
-<div class="small reveal">
-COUNTING DOWN
-</div>
-
-<h2 class="reveal">
-再一下下，<br>
-我們就要出發了。
-</h2>
-
-<p class="reveal">
-9月5日，<br>
-我想和你一起暫時離開熟悉的日常。
-</p>
-
-<p class="reveal">
-不需要去哪裡打卡，<br>
-也不用把行程排得滿滿的。
-</p>
-
-<p class="reveal">
-<strong>只要有你，就很好。</strong>
-</p>
-
-
-<div class="countdown reveal">
-
-<div class="count-box">
-
-<div
-    class="count-number"
-    id="days">
-0
-</div>
-
-<div class="count-label">
-DAYS
-</div>
-
-</div>
-
-
-<div class="count-box">
-
-<div
-    class="count-number"
-    id="hours">
-0
-</div>
-
-<div class="count-label">
-HOURS
-</div>
-
-</div>
-
-
-<div class="count-box">
-
-<div
-    class="count-number"
-    id="minutes">
-0
-</div>
-
-<div class="count-label">
-MINUTES
-</div>
-
-</div>
-
-
-<div class="count-box">
-
-<div
-    class="count-number"
-    id="seconds">
-0
-</div>
-
-<div class="count-label">
-SECONDS
-</div>
-
-</div>
-
-</div>
-
-
-<p
-    class="reveal"
-    id="countdownText">
-
-距離我們出發，還有一點點時間。
-
-</p>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     最後｜生日告白
-========================= -->
-
-<section class="final">
-
-<div class="container">
-
-<div class="small reveal">
-THE REAL GIFT
-</div>
-
-
-<h2 class="reveal">
-其實，我想送你的，<br>
-從來都不只是這趟旅行。
-</h2>
-
-
-<p class="reveal">
-威翰，
-</p>
-
-<p class="reveal">
-我們認識、在一起，<br>
-到現在也才三個月。
-</p>
-
-<p class="reveal">
-三個月其實很短，<br>
-短到我們還有很多故事沒有一起經歷。
-</p>
-
-<p class="reveal">
-但也是因為這樣，<br>
-我更期待我們接下來的日子。
-</p>
-
-
-<div class="heart reveal">
-♡
-</div>
-
-
-<p class="reveal">
-我想慢慢認識你，<br>
-慢慢了解你的喜歡、你的習慣，<br>
-也想在你累的時候，成為那個可以陪你的人。
-</p>
-
-
-<p class="reveal">
-我希望你知道，
-</p>
-
-
-<h2 class="reveal">
-你真的已經做得很好了。
-</h2>
-
-
-<p class="reveal">
-所以不用總是覺得自己還不夠好，<br>
-也不用因為偶爾迷惘，<br>
-就懷疑自己的價值。
-</p>
-
-
-<p class="reveal">
-在我眼裡的你，<br>
-是很認真、很溫柔，<br>
-也是有自己想法、很有魅力的人。
-</p>
-
-
-<p class="reveal">
-我很喜歡你身上的那份獨特。
-</p>
-
-
-<p class="reveal">
-所以以後如果有開心的事情，<br>
-我想陪你一起開心。
-</p>
-
-
-<p class="reveal">
-如果有不順利的時候，<br>
-也沒關係。
-</p>
-
-
-<h2 class="reveal">
-你不用一個人撐著。
-</h2>
-
-
-<p class="reveal">
-<strong>我會在。</strong>
-</p>
-
-
-<p class="reveal">
-我不一定每次都知道該怎麼解決，<br>
-但我可以陪你一起想、一起走。
-</p>
-
-
-<p class="reveal">
-我希望你知道，<br>
-在我這裡，你可以安心做自己。
-</p>
-
-
-<!-- =========================
-     生日彩蛋
-========================= -->
-
-<button
-    class="btn reveal"
-    id="secretBtn">
-
-🎁 威翰，還有一句話想偷偷跟你說
-
-</button>
-
-
-<div
-    class="secret"
-    id="secret">
-
-<div class="secret-message">
-
-<div class="small">
-SEPTEMBER 8
-</div>
-
-<h2>
-生日快樂，威翰。
-</h2>
-
-<p>
-9月8日，是屬於你的日子。
-</p>
-
-<p>
-很開心今年的生日，<br>
-我可以參與其中。
-</p>
-
-<p>
-雖然我們才在一起三個月，<br>
-但我已經開始期待，<br>
-以後還能陪你度過多少個生日。
-</p>
-
-<p>
-我希望未來的每一年，<br>
-你都還是那個很棒的你。
-</p>
-
-<p>
-可以去做自己喜歡的事情，<br>
-可以追著自己想要的生活，<br>
-也可以偶爾停下來休息。
-</p>
-
-<p>
-<strong>
-不要忘記，你真的很棒。
-</strong>
-</p>
-
-<p>
-而我也會努力成為一個<br>
-可以讓你感到安心的人。
-</p>
-
-<p>
-不管未來遇到什麼，<br>
-我希望我們都可以牽著彼此，<br>
-一起慢慢走。
-</p>
-
-<p>
-<strong>
-生日快樂，威翰。
-</strong>
-</p>
-
-<p>
-三個月只是開始。
-</p>
-
-<p>
-以後的故事，<br>
-我想和你一起寫。
-</p>
-
-<div class="heart">
-♡
-</div>
-
-<p>
-<strong>
-一起出發吧。
-</strong>
-</p>
-
-<p>
-不只是這一次，<br>
-是以後的很多很多次。
-</p>
-
-</div>
-
-</div>
-
-
-<br>
-
-
-<a
-    href="#story"
-    class="btn reveal">
-
-☂ 再看一次
-
-</a>
-
-</div>
-
-</section>
-
-
-
-<script>
-
-/* =========================
-   產生雨滴
-========================= */
-
-const rain =
-document.getElementById("rain");
-
-for(let i = 0; i < 60; i++){
-
-    const drop =
-    document.createElement("div");
-
-    drop.className = "drop";
-
-    drop.style.left =
-    Math.random() * 100 + "%";
-
-    drop.style.height =
-    (40 + Math.random() * 70) + "px";
-
-    drop.style.animationDuration =
-    (0.7 + Math.random() * 1.5) + "s";
-
-    drop.style.animationDelay =
-    Math.random() * 2 + "s";
-
-    drop.style.opacity =
-    0.15 + Math.random() * 0.55;
-
-    rain.appendChild(drop);
-}
-
-
-/* =========================
-   滑入動畫
-========================= */
-
-const observer =
-new IntersectionObserver(
-(entries) => {
-
-    entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
-            entry.target
-            .classList
-            .add("show");
-
-        }
-
-    });
-
-},
-{
-    threshold:0.15
-});
-
-
-document
-.querySelectorAll(".reveal")
-.forEach(el => {
-
-    observer.observe(el);
-
-});
-
-
-/* =========================
-   圖片放大
-========================= */
-
-const lightbox =
-document.getElementById("lightbox");
-
-const lightboxImg =
-document.getElementById("lightboxImg");
-
-const closeLightbox =
-document.getElementById("closeLightbox");
-
-
-function openPhoto(img){
-
-    if(
-        img.style.display === "none" ||
-        !img.complete ||
-        img.naturalWidth === 0
-    ){
-
-        return;
-
-    }
-
-    lightboxImg.src = img.src;
-
-    lightbox.classList.add("show");
-
-}
-
-
-closeLightbox.addEventListener(
-"click",
-() => {
-
-    lightbox.classList.remove("show");
-
-});
-
-
-lightbox.addEventListener(
-"click",
-(e) => {
-
-    if(e.target === lightbox){
-
-        lightbox.classList.remove("show");
-
-    }
-
-});
-
-
-/* =========================
-   出發倒數
-========================= */
-
-const tripDate =
-new Date("2026-09-05T09:00:00");
-
-
-function updateCountdown(){
-
-    const now =
-    new Date();
-
-    const difference =
-    tripDate - now;
-
-
-    if(difference <= 0){
-
-        document.getElementById("days")
-        .textContent = "0";
-
-        document.getElementById("hours")
-        .textContent = "0";
-
-        document.getElementById("minutes")
-        .textContent = "0";
-
-        document.getElementById("seconds")
-        .textContent = "0";
-
-        document.getElementById("countdownText")
-        .textContent =
-        "今天，我們出發吧 ☂️";
-
-        return;
-
-    }
-
-
-    const days =
-    Math.floor(
-        difference /
-        (1000 * 60 * 60 * 24)
-    );
-
-
-    const hours =
-    Math.floor(
-        (difference /
-        (1000 * 60 * 60)) % 24
-    );
-
-
-    const minutes =
-    Math.floor(
-        (difference /
-        (1000 * 60)) % 60
-    );
-
-
-    const seconds =
-    Math.floor(
-        (difference /
-        1000) % 60
-    );
-
-
-    document.getElementById("days")
-    .textContent = days;
-
-    document.getElementById("hours")
-    .textContent =
-    String(hours).padStart(2,"0");
-
-    document.getElementById("minutes")
-    .textContent =
-    String(minutes).padStart(2,"0");
-
-    document.getElementById("seconds")
-    .textContent =
-    String(seconds).padStart(2,"0");
-
-}
-
-
-updateCountdown();
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-/* =========================
-   生日秘密
-========================= */
-
-const secretBtn =
-document.getElementById("secretBtn");
-
-const secret =
-document.getElementById("secret");
-
-
-secretBtn.addEventListener(
-"click",
-() => {
-
-    secret.classList.toggle("open");
-
-
-    if(secret.classList.contains("open")){
-
-        secretBtn.textContent =
-        "♡ 給威翰的話";
-
-        setTimeout(() => {
-
-            secret.scrollIntoView({
-                behavior:"smooth",
-                block:"center"
-            });
-
-        },300);
-
-    }else{
-
-        secretBtn.textContent =
-        "🎁 威翰，還有一句話想偷偷跟你說";
-
-    }
-
-});
-
-</script>
 
 </body>
 </html>
